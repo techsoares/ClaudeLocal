@@ -26,3 +26,8 @@ Para "lembrar" algo entre os dois ambientes, adicione aqui, faça commit e push 
 
 ### Fluxo de status observado no DX
 Backlog → Em andamento → Aguarda informações / Pronto para retomada → Aguarda homologação → Concluído
+
+### Observação sobre chamados fechados no DX
+- O workflow do DX **não preenche o campo Resolution** — `resolved`/`resolution` ficam vazios.
+- Para filtrar por data de fechamento use `statusCategoryChangedDate`, ex.:
+  `project = DX AND component = 11458 AND statusCategory = Done AND statusCategoryChangedDate >= -30d`
