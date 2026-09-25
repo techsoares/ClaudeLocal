@@ -6,6 +6,7 @@ Para "lembrar" algo entre os dois ambientes, adicione aqui, faça commit e push 
 ## Sobre mim
 - Andressa Soares — Analista de ControlDesk PL, departamento ONE (PG Mais).
 - Idioma: responder sempre em português (pt-BR).
+- Nas análises de chamados, considerar **só os abertos** (`statusCategory != Done`), a menos que eu peça o contrário.
 
 ## Jira
 - Site: https://pgmais.atlassian.net (cloudId `89291bdd-c535-40b2-b213-ab2a096b6187`).
