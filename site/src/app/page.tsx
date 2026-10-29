@@ -1,4 +1,7 @@
+import type { Metadata } from "next";
 import { Calculadora } from "@/components/calculadora";
+import { JsonLd, dadosFaq, dadosNegocio } from "@/components/json-ld";
+import { Diagnostico } from "@/components/diagnostico";
 import { Duvidas } from "@/components/faq";
 import { ChamadaFinal, ContatoFixo, Rodape } from "@/components/final";
 import { Header } from "@/components/header";
@@ -9,6 +12,8 @@ import { Vitrine } from "@/components/modelo/vitrine";
 import { Depoimentos, Portfolio, Sobre } from "@/components/prova";
 import { ComoFunciona, Garantia, Incluso, Numeros, PorQue } from "@/components/secoes";
 import { modelos } from "@/lib/modelos";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function Home() {
   const vitrine = modelos.slice(0, 6).map((m) => ({
@@ -22,11 +27,14 @@ export default function Home() {
 
   return (
     <>
+      <JsonLd dados={dadosNegocio()} />
+      <JsonLd dados={dadosFaq()} />
       <Header />
       <main>
         <Hero />
         <Numeros />
         <PorQue />
+        <Diagnostico />
         <Incluso />
         <Vitrine itens={vitrine} total={modelos.length} />
         <ComoFunciona />

@@ -8,8 +8,8 @@ import { config } from "@/lib/config";
 import { Botao, WhatsAppIcon } from "./ui";
 
 const links = [
-  { href: "/#incluso", label: "O que inclui" },
   { href: "/modelos", label: "Modelos" },
+  { href: "/logo", label: "Criar logo" },
   { href: "/#orcamento", label: "Preços" },
   { href: "/#portfolio", label: "Portfólio" },
   { href: "/#duvidas", label: "Dúvidas" },

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Fraunces, Inter, Space_Grotesk } from "next/font/google";
 import { IlhaProvider } from "@/components/ilha";
-import { config } from "@/lib/config";
+import { Rastreamento } from "@/components/rastreamento";
+import { config, siteUrl } from "@/lib/config";
 import "./globals.css";
 
 const inter = Inter({
@@ -33,9 +34,9 @@ const descricao =
   "Seu site ou landing page no ar em até 7 dias, a partir de R$ 997, com domínio .com.br incluso. Primeira versão em 48h e você só paga a segunda metade se gostar.";
 
 export const metadata: Metadata = {
-  title: titulo,
+  title: { default: titulo, template: `%s | ${config.marca}` },
   description: descricao,
-  ...(config.dominio ? { metadataBase: new URL(config.dominio) } : {}),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: "Site profissional em 7 dias a partir de R$ 997",
     description: descricao,
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full font-sans">
         <IlhaProvider>{children}</IlhaProvider>
+        <Rastreamento />
       </body>
     </html>
   );

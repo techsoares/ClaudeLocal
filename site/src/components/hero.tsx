@@ -56,8 +56,8 @@ export function Hero() {
             <Botao mensagem="Oi! Quero colocar o site do meu negócio no ar.">
               <WhatsAppIcon /> Quero meu site
             </Botao>
-            <Botao href="#orcamento" variante="contorno">
-              Simular meu orçamento
+            <Botao href="#diagnostico" variante="contorno">
+              Descobrir meu site ideal (30s)
             </Botao>
           </motion.div>
 

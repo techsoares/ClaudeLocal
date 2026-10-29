@@ -92,6 +92,11 @@ export const faq = [
       "Sim. Pequenos ajustes nos primeiros 30 dias são por minha conta. Depois disso, faço um orçamento rápido para cada mudança.",
   },
   {
+    pergunta: "Você cria a logo também?",
+    resposta:
+      "Crio. Você pode montar a sua no meu criador de logo e receber os arquivos por R$ 9,99, ou pedir uma logo personalizada feita por mim por R$ 99,99.",
+  },
+  {
     pergunta: "Você faz projetos maiores, como loja ou sistema?",
     resposta:
       "Faço. Loja virtual, área com login, sistemas de gestão e integrações com IA. Esses projetos começam em + R$ 997 sobre o site e o valor final depende do escopo. Me chama que eu te passo um orçamento.",

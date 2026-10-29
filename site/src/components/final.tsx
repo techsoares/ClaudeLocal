@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { config, linkWhatsApp } from "@/lib/config";
+import { nichos } from "@/lib/nichos";
 import { Reveal } from "./reveal";
 import { Botao, Titulo, WhatsAppIcon } from "./ui";
 
@@ -43,6 +44,7 @@ const colunas = [
     titulo: "Navegar",
     links: [
       { href: "/modelos", label: "Modelos prontos" },
+      { href: "/#diagnostico", label: "Diagnóstico grátis" },
       { href: "/#orcamento", label: "Planos e preços" },
       { href: "/#portfolio", label: "Portfólio" },
       { href: "/#duvidas", label: "Dúvidas" },
@@ -55,6 +57,7 @@ const colunas = [
       { href: "/#orcamento", label: "Landing page" },
       { href: "/#orcamento", label: "Blog" },
       { href: "/#orcamento", label: "Loja e sistemas" },
+      { href: "/logo", label: "Criador de logo" },
     ],
   },
 ];
@@ -112,6 +115,18 @@ export function Rodape() {
           </ul>
         </div>
       </div>
+
+      <nav aria-label="Sites por segmento" className="mx-auto mt-12 max-w-6xl px-5 text-sm text-white/50">
+        <span className="mr-2 font-semibold text-white/70">Sites para:</span>
+        {nichos.map((n, i) => (
+          <span key={n.slug}>
+            <Link href={`/para/${n.slug}`} className="hover:text-white">
+              {n.nome}
+            </Link>
+            {i < nichos.length - 1 && " · "}
+          </span>
+        ))}
+      </nav>
 
       {/* nome gigante no rodapé, cortado na base */}
       <div

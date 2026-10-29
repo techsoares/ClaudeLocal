@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { animate, motion, useMotionValue, useReducedMotion, useTransform } from "motion/react";
-import { Check, LayoutTemplate, Newspaper, PanelsTopLeft, ShoppingBag } from "lucide-react";
+import { Check, LayoutTemplate, Newspaper, PanelsTopLeft, PenTool, Shapes, ShoppingBag } from "lucide-react";
+import * as catalogo from "@/lib/catalogo";
 import { linkWhatsApp, precos, reais } from "@/lib/config";
 import { modelos } from "@/lib/modelos";
 import { useIlha } from "./ilha";
@@ -10,37 +11,21 @@ import { Reveal } from "./reveal";
 import { Eyebrow, Titulo, WhatsAppIcon } from "./ui";
 
 const bases = [
-  {
-    id: "site",
-    icone: PanelsTopLeft,
-    titulo: "Site institucional",
-    texto: "Até 5 páginas apresentando o negócio inteiro.",
-  },
-  {
-    id: "landing",
-    icone: LayoutTemplate,
-    titulo: "Landing page",
-    texto: "Página única focada em uma oferta, ideal para anúncios.",
-  },
+  { id: "site", icone: PanelsTopLeft, ...catalogo.bases.site },
+  { id: "landing", icone: LayoutTemplate, ...catalogo.bases.landing },
 ] as const;
 
 const extras = [
-  {
-    id: "blog",
-    icone: Newspaper,
-    titulo: "Blog pronto para publicar",
-    valor: precos.blog,
-  },
-  {
-    id: "maior",
-    icone: ShoppingBag,
-    titulo: "Loja virtual, login, sistema ou 10+ páginas",
-    valor: precos.projetoMaior,
-  },
+  { id: "blog", icone: Newspaper, ...catalogo.extras.blog },
+  { id: "maior", icone: ShoppingBag, ...catalogo.extras.maior },
+  { id: "logo", icone: PenTool, ...catalogo.extras.logo, titulo: "Logo personalizada feita por mim" },
+  { id: "logoExpress", icone: Shapes, ...catalogo.extras.logoExpress, titulo: "Logo express: você cria no meu criador" },
 ] as const;
 
-type Base = (typeof bases)[number]["id"];
-type Extra = (typeof extras)[number]["id"];
+type Base = catalogo.Base;
+type Extra = catalogo.Extra;
+// as duas opções de logo não se somam
+const exclusivos: Partial<Record<Extra, Extra>> = { logo: "logoExpress", logoExpress: "logo" };
 
 // Planos são atalhos que preenchem a calculadora.
 const planos: { id: string; nome: string; resumo: string; extras: Extra[]; aPartirDe?: boolean; destaque?: boolean; itens: string[] }[] = [
@@ -72,7 +57,7 @@ const planos: { id: string; nome: string; resumo: string; extras: Extra[]; aPart
 function ValorAnimado({ valor }: { valor: number }) {
   const reduzir = useReducedMotion();
   const mv = useMotionValue(valor);
-  const texto = useTransform(mv, (v) => reais(Math.round(v)));
+  const texto = useTransform(mv, (v) => reais(Math.round(v * 100) / 100));
   useEffect(() => {
     if (reduzir) {
       mv.set(valor);
@@ -95,10 +80,11 @@ export function Calculadora() {
   const { avisar } = useIlha();
 
   const total = somar(escolhidos);
-  const metade = total / 2;
+  const [entrada, saldo] = catalogo.metades(total);
   const alternar = (e: (typeof extras)[number]) => {
     const tinha = escolhidos.includes(e.id);
-    setEscolhidos((atual) => (tinha ? atual.filter((x) => x !== e.id) : [...atual, e.id]));
+    const outro = exclusivos[e.id];
+    setEscolhidos((atual) => (tinha ? atual.filter((x) => x !== e.id) : [...atual.filter((x) => x !== outro), e.id]));
     avisar(tinha ? "Item removido" : "Item adicionado", `${tinha ? "−" : "+"} ${reais(e.valor)} · ${e.titulo.split(",")[0]}`);
   };
   const planoAtivo = planos.find((p) => p.extras.length === escolhidos.length && p.extras.every((x) => escolhidos.includes(x)));
@@ -159,7 +145,7 @@ export function Calculadora() {
                       <span className="font-display text-5xl font-extrabold tracking-tight">{reais(somar(p.extras))}</span>
                     </div>
                     <p className={`mt-1 text-sm ${p.destaque ? "text-white/60" : "text-ink-soft"}`}>
-                      ou 2× de {reais(somar(p.extras) / 2)} · pagamento único
+                      metade no início, metade na entrega
                     </p>
                     <ul className="mt-7 grid gap-3 text-[15px]">
                       {p.itens.map((t) => (
@@ -250,7 +236,14 @@ export function Calculadora() {
                           {ativo && <Check className="size-4" strokeWidth={3} />}
                         </span>
                         <e.icone className="size-5 shrink-0 text-ink-soft" strokeWidth={1.75} />
-                        <span className="flex-1 font-medium">{e.titulo}</span>
+                        <span className="flex-1 font-medium">
+                          {e.titulo}
+                          {e.id === "logoExpress" && (
+                            <a href="/logo" onClick={(ev) => ev.stopPropagation()} className="ml-2 text-sm font-semibold text-brand underline">
+                              abrir criador
+                            </a>
+                          )}
+                        </span>
                         <span className="font-display font-extrabold whitespace-nowrap">+ {reais(e.valor)}</span>
                       </label>
                     );
@@ -308,13 +301,13 @@ export function Calculadora() {
                   <div className="flex justify-between gap-4">
                     <span className="text-white/70">Para começar</span>
                     <span className="font-semibold">
-                      <ValorAnimado valor={metade} />
+                      <ValorAnimado valor={entrada} />
                     </span>
                   </div>
                   <div className="flex justify-between gap-4">
                     <span className="text-white/70">Quando estiver no ar</span>
                     <span className="font-semibold">
-                      <ValorAnimado valor={metade} />
+                      <ValorAnimado valor={saldo} />
                     </span>
                   </div>
                 </div>
