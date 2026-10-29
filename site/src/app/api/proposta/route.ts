@@ -13,6 +13,6 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, erro: "Formato inválido." }, { status: 400 });
   }
   const proposta = normalizar(dados);
-  if (!proposta) return Response.json({ ok: false, erro: "Informe pelo menos o nome do cliente." }, { status: 400 });
-  return Response.json({ ok: true, link: linkProposta(proposta) });
+  if (!proposta) return Response.json({ ok: false, erro: "Informe o nome do cliente ou do negócio." }, { status: 400 });
+  return Response.json({ ok: true, link: linkProposta(proposta, dados.pagina === "resultado" ? "resultado" : "proposta") });
 }

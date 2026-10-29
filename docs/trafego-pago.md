@@ -96,3 +96,19 @@ e o ticket é R$ 997 ou mais. Se o custo por venda passar de R$ 600, pause os gr
 2. Mande o link da proposta que o próprio site gerou (está na planilha).
 3. Não respondeu em 24h → mande um modelo do segmento dele ("Fiz este para hamburgueria, olha como ficaria a sua").
 4. Fechou → peça a avaliação no Google assim que o site for ao ar.
+
+## 7. Prospecção ativa com o robô (sem gastar com anúncio)
+
+O robô em `/prospectar` acha negócios sem site no Google, confere se estão funcionando e se o telefone é da
+região, e ordena pelas melhores oportunidades.
+
+1. **Escolha um nicho por semana** (ex.: hamburguerias de Curitiba). Fica mais fácil reaproveitar a prévia.
+2. **Gere a proposta com prévia** pelo botão do robô. Ela mostra o perfil do Maps dele (ou o site atual, feio
+   e lento, com a nota de velocidade do Google) do lado da prévia nova, em dois celulares.
+3. **Abra o link uma vez antes de mandar** (botão "Conferir"): a medição fica pronta e o cliente vê na hora.
+4. **Mande poucas mensagens por dia** (10 a 20), sempre personalizadas. Disparo em massa faz o WhatsApp
+   bloquear o seu número.
+5. **Peça para ele abrir no celular.** O site te avisa na planilha quando ele abrir (aba `proposta_aberta`):
+   esse é o melhor momento para chamar de novo.
+6. **Respeite quem pedir para não receber mais contato** e anote na planilha. Usar dados públicos de empresas
+   para oferecer um serviço é permitido, mas a pessoa tem o direito de pedir para sair (LGPD).

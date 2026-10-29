@@ -21,9 +21,9 @@ export function assinaturaConfere(codigo: string, assinatura: string) {
   return esperado.length === recebido.length && timingSafeEqual(esperado, recebido);
 }
 
-export function linkProposta(p: Proposta) {
+export function linkProposta(p: Proposta, pagina: "proposta" | "resultado" = "proposta") {
   const codigo = codificar(p);
-  return `${siteUrl}/proposta?p=${codigo}&a=${assinar(codigo)}`;
+  return `${siteUrl}/${pagina}?p=${codigo}&a=${assinar(codigo)}`;
 }
 
 // Senha das telas internas (gerador de propostas e exportação de logo). Defina ADMIN_CHAVE na Vercel.
@@ -33,4 +33,25 @@ export function chaveAdminConfere(chave: string | null) {
   const a = Buffer.from(certa);
   const b = Buffer.from(chave);
   return a.length === b.length && timingSafeEqual(a, b);
+}
+
+// Envia um aviso para LEAD_WEBHOOK_URL (planilha, n8n, CRM). Nunca derruba a requisição se falhar.
+export async function notificar(dados: Record<string, unknown>) {
+  const corpo = { recebido_em: new Date().toISOString(), ...dados };
+  const webhook = process.env.LEAD_WEBHOOK_URL;
+  if (!webhook) {
+    console.log("Aviso (LEAD_WEBHOOK_URL não configurado):", corpo);
+    return;
+  }
+  try {
+    await fetch(webhook, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(corpo),
+      signal: AbortSignal.timeout(5000),
+    });
+  } catch (e) {
+    // fica no log da Vercel para não se perder
+    console.error("Falha ao enviar aviso para o webhook", e, corpo);
+  }
 }

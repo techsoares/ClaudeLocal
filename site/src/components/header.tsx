@@ -11,6 +11,7 @@ const links = [
   { href: "/modelos", label: "Modelos" },
   { href: "/logo", label: "Criar logo" },
   { href: "/#orcamento", label: "Preços" },
+  { href: "/#mensal", label: "Planos mensais" },
   { href: "/#portfolio", label: "Portfólio" },
   { href: "/#duvidas", label: "Dúvidas" },
 ];

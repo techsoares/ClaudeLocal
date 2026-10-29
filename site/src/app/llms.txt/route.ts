@@ -1,3 +1,4 @@
+import { planosMensais } from "@/lib/catalogo";
 import { config, precos, prazos, reais, siteUrl } from "@/lib/config";
 import { faq } from "@/lib/content";
 import { modelos } from "@/lib/modelos";
@@ -16,7 +17,10 @@ export function GET() {
 - Loja virtual, área com login, sistema ou mais de 10 páginas: a partir de + ${reais(precos.projetoMaior)}
 - Logo personalizada: ${reais(precos.logo)}
 - Logo express (criada pelo cliente no criador de logo): ${reais(precos.logoExpress)}
-- Pagamento: Pix ou cartão, metade no início e metade na entrega. Sem mensalidade.
+- Pagamento: Pix, cartão ou boleto (Asaas), metade no início e metade na entrega. Sem mensalidade obrigatória.
+
+## Planos mensais (opcionais)
+${planosMensais.map((p) => `- ${p.nome}: ${reais(p.valor)}/mês. ${p.resumo}`).join("\n")}
 
 ## Como funciona
 - Primeira versão em até ${prazos.primeiraVersao}; site no ar em até ${prazos.noAr}.

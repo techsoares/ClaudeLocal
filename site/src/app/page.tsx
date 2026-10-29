@@ -6,6 +6,7 @@ import { Duvidas } from "@/components/faq";
 import { ChamadaFinal, ContatoFixo, Rodape } from "@/components/final";
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
+import { PlanosMensais } from "@/components/planos-mensais";
 import { Miniatura } from "@/components/modelo/miniatura";
 import { SiteModelo } from "@/components/modelo/site-modelo";
 import { Vitrine } from "@/components/modelo/vitrine";
@@ -40,6 +41,7 @@ export default function Home() {
         <ComoFunciona />
         <Garantia />
         <Calculadora />
+        <PlanosMensais />
         <Portfolio />
         <Depoimentos />
         <Sobre />

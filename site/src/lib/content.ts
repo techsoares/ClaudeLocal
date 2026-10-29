@@ -61,7 +61,7 @@ export const faq = [
   {
     pergunta: "Preciso pagar mensalidade?",
     resposta:
-      "Não. O site é pago uma vez só. A hospedagem do primeiro ano já está inclusa. Depois disso, o único custo fixo é a renovação anual do domínio .com.br, de cerca de R$ 40, paga direto ao Registro.br.",
+      "Não é obrigatório. O site é pago uma vez só e a hospedagem do primeiro ano já está inclusa. Depois disso, o único custo fixo é a renovação anual do domínio .com.br, de cerca de R$ 40. Se quiser que eu cuide do site, do Google e dos anúncios, existem planos mensais a partir de R$ 49.",
   },
   {
     pergunta: "Eu preciso escrever os textos?",

@@ -27,6 +27,13 @@ export const precos = {
   logoExpress: 9.99, // o cliente monta no criador de logo e recebe os arquivos
 };
 
+// Planos mensais (cobrados por assinatura no Asaas)
+export const precosMensais = {
+  cuidado: 49,
+  crescimento: 149,
+  anuncios: 397,
+};
+
 export const prazos = {
   primeiraVersao: "48h",
   noAr: "7 dias",

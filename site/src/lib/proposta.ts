@@ -15,10 +15,29 @@ export type Proposta = {
   observacao?: string;
   emitida: string; // AAAA-MM-DD
   validade: string; // AAAA-MM-DD
+  // Comparativo "hoje × novo": site atual do cliente OU o perfil dele no Google Maps
+  atualSite?: string;
+  maps?: { nome: string; nota?: number; avaliacoes?: number; endereco?: string; categoria?: string; url?: string; link?: string };
+  previa?: string; // link de uma prévia real que você montou (senão usa o modelo com o nome do negócio)
+  entregue?: string; // link do site entregue (usado na página de resultado)
 };
 
 const texto = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 const dataValida = (v: unknown) => typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v);
+function url(v: unknown) {
+  const t = texto(v, 300);
+  if (!t) return undefined;
+  try {
+    const u = new URL(/^https?:\/\//i.test(t) ? t : `https://${t}`);
+    return u.protocol === "https:" || u.protocol === "http:" ? u.toString() : undefined;
+  } catch {
+    return undefined;
+  }
+}
+const numero = (v: unknown, max: number) => {
+  const n = Number(String(v ?? "").replace(",", "."));
+  return Number.isFinite(n) && n > 0 ? Math.min(n, max) : undefined;
+};
 
 export function hoje(diasAFrente = 0) {
   const d = new Date();
@@ -30,7 +49,19 @@ export function hoje(diasAFrente = 0) {
 export function normalizar(dados: Record<string, unknown>): Proposta | null {
   const cliente = texto(dados.cliente, 80);
   const negocio = texto(dados.negocio, 80);
-  if (!cliente) return null;
+  if (!cliente && !negocio) return null;
+  const m = dados.maps && typeof dados.maps === "object" ? (dados.maps as Record<string, unknown>) : null;
+  const maps = m && texto(m.nome, 80)
+    ? {
+        nome: texto(m.nome, 80),
+        nota: numero(m.nota, 5),
+        avaliacoes: numero(m.avaliacoes, 1_000_000),
+        endereco: texto(m.endereco, 160) || undefined,
+        categoria: texto(m.categoria, 60) || undefined,
+        url: url(m.url),
+        link: url(m.link),
+      }
+    : undefined;
   const modelo = texto(dados.modelo, 40);
   const extras = Array.isArray(dados.extras) ? [...new Set(dados.extras.filter(ehExtra))] : [];
   const desconto = Math.max(0, Math.min(Number(dados.desconto) || 0, 5000));
@@ -46,6 +77,10 @@ export function normalizar(dados: Record<string, unknown>): Proposta | null {
     observacao: texto(dados.observacao, 600) || undefined,
     emitida: dataValida(dados.emitida) ? (dados.emitida as string) : hoje(),
     validade: dataValida(dados.validade) ? (dados.validade as string) : hoje(7),
+    atualSite: url(dados.atualSite),
+    maps,
+    previa: url(dados.previa),
+    entregue: url(dados.entregue),
   };
 }
 

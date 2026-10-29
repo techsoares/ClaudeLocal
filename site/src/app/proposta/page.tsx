@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
-import { AlertTriangle, BadgeCheck, CalendarClock, Check, ShieldCheck } from "lucide-react";
+import { AlertTriangle, BadgeCheck, CalendarClock, Check, ShieldCheck, Smartphone } from "lucide-react";
+import QRCode from "qrcode";
 import { AcoesProposta, ContarVisualizacao } from "@/components/proposta/acoes";
+import { Comparativo, ComparativoCarregando } from "@/components/proposta/comparativo";
 import { Miniatura } from "@/components/modelo/miniatura";
 import { SiteModelo } from "@/components/modelo/site-modelo";
 import { bases, extras, metades, total } from "@/lib/catalogo";
@@ -10,6 +12,9 @@ import { config, precos, reais, siteUrl } from "@/lib/config";
 import { modeloPorSlug } from "@/lib/modelos";
 import { decodificar, formatarData, hoje } from "@/lib/proposta";
 import { assinaturaConfere } from "@/lib/servidor";
+
+// a medição do site atual pode levar alguns segundos na primeira abertura
+export const maxDuration = 60;
 
 export const metadata: Metadata = {
   title: "Sua proposta",
@@ -62,10 +67,11 @@ async function Conteudo({ searchParams }: { searchParams: PageProps<"/proposta">
   const [entrada, saldo] = metades(valorTotal);
   const primeiroNome = proposta.cliente.split(" ")[0];
   const link = `${siteUrl}/proposta?p=${codigo}&a=${assinatura}`;
+  const qr = await QRCode.toString(link, { type: "svg", margin: 1, color: { dark: "#0A2A1C", light: "#FFFFFF" } });
 
   return (
     <main className="min-h-screen bg-bg pb-24 print:bg-white print:pb-0">
-      <ContarVisualizacao />
+      <ContarVisualizacao p={codigo} a={assinatura} />
       <header className="border-b border-line bg-forest text-white print:border-0 print:bg-white print:text-ink">
         <div className="mx-auto flex max-w-4xl items-center justify-between gap-4 px-5 py-5">
           <Link href="/" className="font-display text-lg font-extrabold">
@@ -104,7 +110,7 @@ async function Conteudo({ searchParams }: { searchParams: PageProps<"/proposta">
             </span>
           </div>
           <h1 className="mt-5 font-display text-[clamp(2.2rem,6vw,3.8rem)] leading-[1.02] font-extrabold tracking-[-0.03em] text-balance">
-            {primeiroNome}, aqui está o plano para{" "}
+            {primeiroNome ? `${primeiroNome}, aqui está o plano para ` : "Aqui está o plano para "}
             <span className="text-brand">{proposta.negocio || "o seu negócio"}</span> estar no ar em 7 dias.
           </h1>
           {proposta.objetivo && (
@@ -113,6 +119,19 @@ async function Conteudo({ searchParams }: { searchParams: PageProps<"/proposta">
             </p>
           )}
         </section>
+
+        <div className="mb-5 grid gap-5 lg:grid-cols-[1fr_200px] lg:items-start">
+          <Suspense fallback={<ComparativoCarregando />}>
+            <Comparativo proposta={proposta} />
+          </Suspense>
+          {/* no computador, um QR para abrir no celular: é lá que o cliente dele vai ver o site */}
+          <aside className="hidden rounded-3xl border border-line bg-card p-5 text-center lg:block print:hidden">
+            <Smartphone className="mx-auto size-6 text-brand" />
+            <p className="mt-2 text-sm font-semibold">Abra no seu celular</p>
+            <div className="mx-auto mt-3 w-36" dangerouslySetInnerHTML={{ __html: qr }} />
+            <p className="mt-3 text-xs text-ink-soft">É no celular que seus clientes vão ver o site todo dia.</p>
+          </aside>
+        </div>
 
         <section className="grid gap-5 md:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-3xl border border-line bg-card p-7 print:break-inside-avoid">
@@ -222,7 +241,16 @@ async function Conteudo({ searchParams }: { searchParams: PageProps<"/proposta">
           </section>
         )}
 
-        <AcoesProposta link={link} cliente={proposta.cliente} negocio={proposta.negocio} total={reais(valorTotal)} />
+        <AcoesProposta
+          link={link}
+          p={codigo}
+          a={assinatura}
+          podePagar={verificada && !vencida}
+          cliente={proposta.cliente}
+          negocio={proposta.negocio}
+          total={reais(valorTotal)}
+          entrada={reais(entrada)}
+        />
 
         <p className="mt-10 text-center text-sm text-ink-soft">
           {config.nome} · WhatsApp {config.whatsappVisivel} · {config.cidade}

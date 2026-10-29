@@ -1,4 +1,4 @@
-import { linkProposta } from "@/lib/servidor";
+import { linkProposta, notificar } from "@/lib/servidor";
 import { normalizar } from "@/lib/proposta";
 
 // Recebe um lead do site (diagnóstico, criador de logo, calculadora) e repassa para
@@ -28,12 +28,12 @@ export async function POST(request: Request) {
   // Propostas pedidas pelo próprio cliente nunca levam desconto nem observação.
   const proposta =
     corpo.proposta && typeof corpo.proposta === "object"
-      ? normalizar({ ...(corpo.proposta as Record<string, unknown>), cliente: nome, desconto: 0, observacao: "" })
+      ? normalizar({ ...(corpo.proposta as Record<string, unknown>), cliente: nome, desconto: 0, observacao: "", previa: "", entregue: "" })
       : null;
   const link = proposta ? linkProposta(proposta) : undefined;
 
-  const lead = {
-    recebido_em: new Date().toISOString(),
+  await notificar({
+    tipo: "lead",
     origem: texto(corpo.origem, 30) || "site",
     nome,
     whatsapp,
@@ -42,24 +42,7 @@ export async function POST(request: Request) {
     utm: corpo.utm && typeof corpo.utm === "object" ? corpo.utm : {},
     pagina: texto(corpo.pagina, 300),
     proposta: link ?? "",
-  };
-
-  const webhook = process.env.LEAD_WEBHOOK_URL;
-  if (webhook) {
-    try {
-      await fetch(webhook, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(lead),
-        signal: AbortSignal.timeout(5000),
-      });
-    } catch (e) {
-      // O lead não pode se perder em silêncio: fica no log da Vercel.
-      console.error("Falha ao enviar lead para o webhook", e, lead);
-    }
-  } else {
-    console.log("Lead recebido (LEAD_WEBHOOK_URL não configurado):", lead);
-  }
+  });
 
   return Response.json({ ok: true, proposta: link });
 }

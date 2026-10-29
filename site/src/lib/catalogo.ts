@@ -1,4 +1,4 @@
-import { precos } from "./config";
+import { precos, precosMensais } from "./config";
 
 // Itens vendáveis. Calculadora, propostas e diagnóstico usam esta mesma lista,
 // então preço muda num lugar só (em config.ts).
@@ -31,3 +31,33 @@ export function metades(valor: number): [number, number] {
   const primeira = Math.ceil(centavos / 2);
   return [primeira / 100, (centavos - primeira) / 100];
 }
+
+// Planos mensais (assinatura no Asaas). Valores em config.ts.
+export const planosMensais = [
+  {
+    id: "cuidado",
+    nome: "Cuidado",
+    valor: precosMensais.cuidado,
+    resumo: "Seu site sempre no ar, seguro e atualizado.",
+    itens: ["Hospedagem e domínio renovados por mim", "Cadeado de segurança e backup", "Até 2 ajustes de texto ou foto por mês", "Suporte pelo WhatsApp"],
+  },
+  {
+    id: "crescimento",
+    nome: "Crescimento",
+    valor: precosMensais.crescimento,
+    destaque: true,
+    resumo: "Para aparecer mais no Google a cada mês.",
+    itens: ["Tudo do Cuidado", "Perfil da Empresa no Google atualizado com posts", "2 artigos por mês no blog", "Relatório mensal de visitas e contatos"],
+  },
+  {
+    id: "anuncios",
+    nome: "Anúncios",
+    valor: precosMensais.anuncios,
+    resumo: "Eu cuido dos seus anúncios no Google e Instagram.",
+    nota: "+ verba dos anúncios, paga direto ao Google e à Meta",
+    itens: ["Criação e gestão das campanhas", "Artes e textos dos anúncios", "Ajustes semanais para baixar o custo", "Relatório a cada 15 dias"],
+  },
+] as const;
+
+export type PlanoMensal = (typeof planosMensais)[number]["id"];
+export const planoMensal = (id: unknown) => planosMensais.find((p) => p.id === id);
