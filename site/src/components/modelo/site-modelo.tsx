@@ -4,6 +4,7 @@ import {
   ChartLine,
   Clock,
   CupSoda,
+  MapPin,
   Dumbbell,
   Flame,
   Flower2,
@@ -20,6 +21,7 @@ import {
   Star,
 } from "lucide-react";
 import type { Fonte, Icone, Modelo } from "@/lib/modelos";
+import { Cardapio } from "./cardapio";
 
 const icones: Record<Icone, LucideIcon> = {
   dente: Smile,
@@ -64,10 +66,13 @@ export function SiteModelo({ modelo, apenasHero = false }: { modelo: Modelo; ape
       {modelo.layout === "dividido" && <HeroDividido modelo={modelo} />}
       {modelo.layout === "centro" && <HeroCentro modelo={modelo} />}
       {modelo.layout === "cinema" && <HeroCinema modelo={modelo} />}
+      {modelo.layout === "lanchonete" && <HeroLanchonete modelo={modelo} />}
       {!apenasHero && (
         <>
+          {negocio.cardapio && <Cardapio secoes={negocio.cardapio} />}
           <Servicos modelo={modelo} />
           <Sobre modelo={modelo} />
+          {negocio.local && <Local modelo={modelo} />}
           {modelo.tipo === "Landing page" && <Oferta modelo={modelo} />}
           <Contato modelo={modelo} />
           <footer className="border-t border-[color-mix(in_srgb,var(--m-texto)_12%,transparent)] px-6 py-8 text-center text-sm opacity-60">
@@ -329,6 +334,104 @@ function Contato({ modelo }: { modelo: Modelo }) {
         <span className="mt-8 inline-flex rounded-full bg-[var(--m-texto-destaque)] px-6 py-3.5 font-semibold text-[var(--m-destaque)]">
           {modelo.negocio.cta}
         </span>
+      </div>
+    </section>
+  );
+}
+
+// Hambúrguer desenhado só com CSS, para o modelo de lanchonete não depender de foto.
+function Hamburguer() {
+  return (
+    <div className="relative w-[300px]" aria-hidden>
+      <div className="relative h-28 rounded-t-[150px] rounded-b-2xl bg-[#F0A23B] shadow-[inset_-14px_-10px_0_rgba(0,0,0,0.08)]">
+        {[
+          [30, 40], [70, 22], [120, 30], [170, 18], [215, 34], [95, 60], [150, 55], [200, 66], [55, 72],
+        ].map(([x, y], i) => (
+          <span key={i} className="absolute h-2 w-3.5 rounded-full bg-[#FFF3D6]" style={{ left: x, top: y, rotate: `${(i * 37) % 60 - 30}deg` }} />
+        ))}
+      </div>
+      <div className="-mt-1 h-5 rounded-full bg-[#6CBF3F] [clip-path:polygon(0_0,100%_0,100%_60%,95%_100%,88%_55%,80%_100%,72%_55%,64%_100%,56%_55%,48%_100%,40%_55%,32%_100%,24%_55%,16%_100%,8%_55%,0_100%)]" />
+      <div className="-mt-1 h-3 bg-[#E2412A] mx-2 rounded-full" />
+      <div className="-mt-0.5 h-7 bg-[#FFC93C] mx-1 [clip-path:polygon(0_0,100%_0,100%_40%,92%_40%,88%_100%,84%_40%,60%_40%,55%_85%,50%_40%,25%_40%,20%_100%,15%_40%,0_40%)]" />
+      <div className="-mt-4 h-14 rounded-[22px] bg-[#5B2B17] shadow-[inset_0_-8px_0_rgba(0,0,0,0.18)]" />
+      <div className="mt-1 h-12 rounded-t-lg rounded-b-[40px] bg-[#E9963A] shadow-[inset_-12px_-8px_0_rgba(0,0,0,0.08)]" />
+    </div>
+  );
+}
+
+function HeroLanchonete({ modelo }: { modelo: Modelo }) {
+  const { negocio } = modelo;
+  const aviso = [`Aberto hoje a partir das ${negocio.numeros[2][0]}`, "Delivery e salão", negocio.local?.avaliacao ?? "Feito na hora"];
+  return (
+    <header className="relative min-h-[800px] overflow-hidden">
+      <div className="flex gap-8 overflow-hidden bg-[var(--m-destaque)] py-2.5 text-sm font-bold whitespace-nowrap text-[var(--m-texto-destaque)] uppercase">
+        {[...aviso, ...aviso, ...aviso, ...aviso].map((t, i) => (
+          <span key={i} className="flex items-center gap-8">
+            {t} <span>✦</span>
+          </span>
+        ))}
+      </div>
+      <Nav modelo={modelo} />
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pt-6 pb-28 @3xl:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+        <div>
+          {negocio.local && (
+            <span className="inline-flex rotate-[-3deg] items-center gap-2 rounded-full bg-[var(--m-suave)] px-4 py-2 text-sm font-bold">
+              <Star className="size-4 fill-current" /> {negocio.local.avaliacao}
+            </span>
+          )}
+          <Titulo className="mt-6 text-[clamp(3rem,8cqw,6.4rem)] leading-[0.92] uppercase">{negocio.chamada}</Titulo>
+          <p className="mt-6 max-w-md text-lg opacity-75">{negocio.subtitulo}</p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <BotaoModelo>{negocio.cta}</BotaoModelo>
+            <BotaoModelo contorno>Ver cardápio</BotaoModelo>
+          </div>
+        </div>
+        <div className="relative mx-auto grid size-[320px] place-items-center @xl:size-[440px]">
+          <div className="absolute inset-0 rounded-full bg-[var(--m-suave)]" />
+          <svg viewBox="0 0 200 200" className="absolute inset-0 size-full animate-[spin_24s_linear_infinite] motion-reduce:animate-none">
+            <defs>
+              <path id="circulo-lanchonete" d="M100,100 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0" />
+            </defs>
+            <text className="fill-[var(--m-texto)] text-[11px] font-bold tracking-[0.3em] uppercase">
+              <textPath href="#circulo-lanchonete">Artesanal ✦ Feito na chapa ✦ Pão brioche ✦ Fritas crocantes ✦</textPath>
+            </text>
+          </svg>
+          <div className="relative rotate-[-6deg] scale-[0.72] @xl:scale-100">
+            <Hamburguer />
+          </div>
+          <div className="absolute -right-2 bottom-10 rotate-[8deg] rounded-2xl bg-[var(--m-destaque)] px-5 py-3 text-[var(--m-texto-destaque)] shadow-xl">
+            <div className="text-xs font-bold uppercase opacity-80">Smash a partir de</div>
+            <div style={{ fontFamily: "var(--m-fonte)" }} className="text-3xl font-extrabold">
+              {negocio.cardapio?.[1]?.itens.at(-1)?.preco ?? "R$ 29,90"}
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="absolute bottom-0 left-0 h-16 w-full text-[var(--m-cartao)]" aria-hidden>
+        <path fill="currentColor" d="M0,40 C240,90 480,-10 720,40 C960,90 1200,-10 1440,40 L1440,80 L0,80 Z" />
+      </svg>
+    </header>
+  );
+}
+
+function Local({ modelo }: { modelo: Modelo }) {
+  const local = modelo.negocio.local!;
+  return (
+    <section className="mx-auto max-w-6xl px-6 pb-24">
+      <div className="grid gap-4 @3xl:grid-cols-3">
+        {[
+          { titulo: "Endereço", texto: local.endereco },
+          { titulo: "Horário", texto: local.horario },
+          { titulo: "Avaliação", texto: local.avaliacao },
+        ].map((b, i) => (
+          <div key={b.titulo} className={`rounded-3xl p-7 ${i === 0 ? "bg-[var(--m-texto)] text-[var(--m-fundo)]" : "bg-[var(--m-cartao)]"}`}>
+            {i === 0 ? <MapPin className="size-7" /> : i === 1 ? <Clock className="size-7" /> : <Star className="size-7" />}
+            <div className="mt-6 text-sm font-bold tracking-wider uppercase opacity-60">{b.titulo}</div>
+            <div style={{ fontFamily: "var(--m-fonte)" }} className="mt-1 text-xl font-extrabold">
+              {b.texto}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

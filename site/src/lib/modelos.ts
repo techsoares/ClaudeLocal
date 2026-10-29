@@ -2,7 +2,7 @@
 // em /modelos/[slug]. Para criar um novo, copie um bloco e mude os dados.
 
 export type Fonte = "bricolage" | "fraunces" | "grotesk";
-export type Layout = "dividido" | "centro" | "cinema";
+export type Layout = "dividido" | "centro" | "cinema" | "lanchonete";
 export type Icone =
   | "dente"
   | "balanca"
@@ -41,6 +41,9 @@ export type Modelo = {
     sobre: string;
     numeros: [string, string][];
     depoimento: { texto: string; nome: string };
+    // Opcional: restaurantes e lanchonetes ganham cardápio com abas e bloco de endereço
+    cardapio?: { categoria: string; nota?: string; itens: { nome: string; descricao: string; preco: string; selo?: string }[] }[];
+    local?: { endereco: string; horario: string; avaliacao: string };
   };
 };
 
@@ -147,6 +150,68 @@ export const modelos: Modelo[] = [
       sobre: "Nasceu num food truck e virou o ponto de encontro do bairro.",
       numeros: [["40 min", "delivery"], ["12", "burgers"], ["4,8", "no iFood"]],
       depoimento: { texto: "Melhor hambúrguer da cidade, sem exagero.", nome: "Cliente da casa" },
+    },
+  },
+  {
+    slug: "onda",
+    nome: "Onda",
+    segmento: "Hamburgueria artesanal de praia",
+    categoria: "Alimentação",
+    tipo: "Site",
+    estilos: ["Claro", "Colorido", "Ousado"],
+    layout: "lanchonete",
+    fonte: "bricolage",
+    cores: { fundo: "#FFF4E2", texto: "#2B0F0A", destaque: "#E2412A", textoDestaque: "#FFF4E2", suave: "#FFCF4D", cartao: "#FFFFFF" },
+    negocio: {
+      nome: "Onda Burger & Fritas",
+      icone: "chama",
+      chamada: "Burger artesanal pé na areia.",
+      subtitulo: "Clássicos de 160 g, smash de 80 g e fritas crocantes. Todo dia a partir das 18h, na avenida da praia.",
+      cta: "Pedir delivery",
+      servicos: [
+        { icone: "chama", titulo: "Carne moída na hora", texto: "Blend próprio, temperado só com sal e pimenta." },
+        { icone: "relogio", titulo: "Delivery rápido", texto: "Entregamos em toda a orla em até 40 minutos." },
+        { icone: "coracao", titulo: "Lugar de família", texto: "Espaço kids e mesas ao ar livre." },
+      ],
+      sobre: "Começou com uma chapa e uma barraca na areia. Hoje é parada obrigatória de quem passa pela praia, sempre com o mesmo pão macio e a mesma carne suculenta.",
+      numeros: [["160 g", "clássicos"], ["80 g", "smash"], ["18h", "todo dia"]],
+      depoimento: { texto: "Melhor smash do litoral. A batata é viciante.", nome: "Cliente da casa" },
+      cardapio: [
+        {
+          categoria: "Clássicos da casa",
+          nota: "Burger de 160 g no pão brioche",
+          itens: [
+            { nome: "Onda Clássico", descricao: "Burger 160 g, queijo prato, alface, tomate e maionese da casa.", preco: "R$ 34,90", selo: "Mais pedido" },
+            { nome: "Onda Bacon", descricao: "Burger 160 g, cheddar, bacon crocante e cebola caramelizada.", preco: "R$ 39,90" },
+            { nome: "Onda Salada", descricao: "Burger 160 g, muçarela, alface, tomate, cebola roxa e picles.", preco: "R$ 36,90" },
+            { nome: "Onda Veggie", descricao: "Burger de grão-de-bico, queijo, rúcula e maionese verde.", preco: "R$ 33,90" },
+          ],
+        },
+        {
+          categoria: "Smash",
+          nota: "Burger de 80 g prensado na chapa",
+          itens: [
+            { nome: "Smash Duplo Bacon", descricao: "Dois smash 80 g, cheddar em dobro e bacon.", preco: "R$ 42,90", selo: "Favorito" },
+            { nome: "American Smash", descricao: "Dois smash 80 g, queijo americano, picles e molho especial.", preco: "R$ 35,90" },
+            { nome: "Salad Smash", descricao: "Smash 80 g, queijo, alface, tomate e cebola.", preco: "R$ 31,90" },
+            { nome: "Smashinho", descricao: "Versão kids: smash 80 g e queijo.", preco: "R$ 22,90" },
+          ],
+        },
+        {
+          categoria: "Fritas e bebidas",
+          itens: [
+            { nome: "Fritas da casa", descricao: "Batata rústica com páprica e alecrim.", preco: "R$ 19,90" },
+            { nome: "Fritas cheddar e bacon", descricao: "Porção generosa coberta de cheddar cremoso e bacon.", preco: "R$ 29,90" },
+            { nome: "Onion rings", descricao: "Anéis de cebola empanados com molho barbecue.", preco: "R$ 24,90" },
+            { nome: "Limonada da praia", descricao: "Limão, hortelã e gengibre. 500 ml.", preco: "R$ 12,90" },
+          ],
+        },
+      ],
+      local: {
+        endereco: "Av. Beira-Mar, 1000 · Praia Central",
+        horario: "Todos os dias, das 18h às 23h30",
+        avaliacao: "5,0 no Google",
+      },
     },
   },
   {

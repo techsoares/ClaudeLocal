@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { config, linkWhatsApp } from "@/lib/config";
 import { Reveal } from "./reveal";
@@ -37,28 +38,91 @@ export function ChamadaFinal() {
   );
 }
 
+const colunas = [
+  {
+    titulo: "Navegar",
+    links: [
+      { href: "/modelos", label: "Modelos prontos" },
+      { href: "/#orcamento", label: "Planos e preços" },
+      { href: "/#portfolio", label: "Portfólio" },
+      { href: "/#duvidas", label: "Dúvidas" },
+    ],
+  },
+  {
+    titulo: "Serviços",
+    links: [
+      { href: "/#orcamento", label: "Site institucional" },
+      { href: "/#orcamento", label: "Landing page" },
+      { href: "/#orcamento", label: "Blog" },
+      { href: "/#orcamento", label: "Loja e sistemas" },
+    ],
+  },
+];
+
 export function Rodape() {
   return (
-    <footer className="border-t border-line pt-10 pb-28 text-sm text-ink-soft md:pb-10">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5">
+    <footer className="overflow-hidden bg-forest pt-16 pb-28 text-white md:pb-10">
+      <div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
-          © {config.marca} · {config.cidade}
+          <div className="font-display text-2xl font-extrabold">
+            {config.marca}
+            <span className="text-lime">.</span>
+          </div>
+          <p className="mt-3 max-w-xs text-white/60">
+            Sites e landing pages para pequenos negócios, no ar em 7 dias.
+          </p>
         </div>
-        <div className="flex flex-wrap gap-5">
-          <a href={linkWhatsApp("Oi! Vim pelo seu site.")} target="_blank" rel="noopener" className="hover:text-ink">
-            WhatsApp {config.whatsappVisivel}
-          </a>
-          {config.email && (
-            <a href={`mailto:${config.email}`} className="hover:text-ink">
-              {config.email}
-            </a>
-          )}
-          {config.instagram && (
-            <a href={config.instagram} target="_blank" rel="noopener" className="hover:text-ink">
-              Instagram
-            </a>
-          )}
+        {colunas.map((c) => (
+          <nav key={c.titulo} aria-label={c.titulo}>
+            <div className="text-xs font-semibold tracking-[0.14em] text-lime uppercase">{c.titulo}</div>
+            <ul className="mt-4 grid gap-2.5 text-white/75">
+              {c.links.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} className="transition hover:text-white">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
+        <div>
+          <div className="text-xs font-semibold tracking-[0.14em] text-lime uppercase">Contato</div>
+          <ul className="mt-4 grid gap-2.5 text-white/75">
+            <li>
+              <a href={linkWhatsApp("Oi! Vim pelo seu site.")} target="_blank" rel="noopener" className="inline-flex items-center gap-2 hover:text-white">
+                <WhatsAppIcon className="size-4" /> {config.whatsappVisivel}
+              </a>
+            </li>
+            {config.email && (
+              <li>
+                <a href={`mailto:${config.email}`} className="hover:text-white">
+                  {config.email}
+                </a>
+              </li>
+            )}
+            {config.instagram && (
+              <li>
+                <a href={config.instagram} target="_blank" rel="noopener" className="hover:text-white">
+                  Instagram
+                </a>
+              </li>
+            )}
+            <li className="text-white/50">{config.cidade}</li>
+          </ul>
         </div>
+      </div>
+
+      {/* nome gigante no rodapé, cortado na base */}
+      <div
+        aria-hidden
+        className="mx-auto mt-16 max-w-6xl px-5 font-display text-[18vw] leading-[0.8] font-extrabold tracking-[-0.05em] whitespace-nowrap text-white/[0.06] select-none md:text-[11.5rem]"
+      >
+        {config.marca.split(" ")[0]}
+      </div>
+      <div className="mx-auto mt-6 flex max-w-6xl flex-wrap justify-between gap-3 border-t border-white/10 px-5 pt-6 text-sm text-white/50">
+        <span>© {config.marca}</span>
+        <span>Feito com cuidado em {config.cidade.split(",")[0]}</span>
       </div>
     </footer>
   );
