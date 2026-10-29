@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Inter } from "next/font/google";
+import { Bricolage_Grotesque, Fraunces, Inter, Space_Grotesk } from "next/font/google";
+import { IlhaProvider } from "@/components/ilha";
 import { config } from "@/lib/config";
 import "./globals.css";
 
@@ -12,6 +13,19 @@ const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
   weight: ["600", "800"],
+});
+
+// Fontes extras usadas nos modelos de site
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  weight: ["600", "800"],
+});
+
+const grotesk = Space_Grotesk({
+  variable: "--font-grotesk",
+  subsets: ["latin"],
+  weight: ["500", "700"],
 });
 
 const titulo = `Site profissional em 7 dias a partir de R$ 997 | ${config.marca}`;
@@ -32,8 +46,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${bricolage.variable} antialiased`}>
-      <body className="min-h-full font-sans">{children}</body>
+    <html
+      lang="pt-BR"
+      className={`${inter.variable} ${bricolage.variable} ${fraunces.variable} ${grotesk.variable} antialiased`}
+    >
+      <body className="min-h-full font-sans">
+        <IlhaProvider>{children}</IlhaProvider>
+      </body>
     </html>
   );
 }

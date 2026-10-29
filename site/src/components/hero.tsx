@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { Check, Clock, Globe } from "lucide-react";
 import { Botao, WhatsAppIcon } from "./ui";
 
@@ -78,6 +78,10 @@ export function Hero() {
 
 function MockupCelular() {
   const reduzir = useReducedMotion();
+  // parallax: o celular desce e gira um pouco enquanto a pessoa rola
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 700], [0, reduzir ? 0 : 90]);
+  const giro = useTransform(scrollY, [0, 700], [0, reduzir ? 0 : -5]);
   const flutuar = (dur: number, dist = 10) =>
     reduzir ? {} : { animate: { y: [0, -dist, 0] }, transition: { duration: dur, repeat: Infinity, ease: "easeInOut" as const } };
 
@@ -88,6 +92,7 @@ function MockupCelular() {
       transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       className="relative mx-auto w-full max-w-[380px]"
     >
+      <motion.div style={{ y, rotate: giro }}>
       {/* celular */}
       <div className="relative mx-auto w-[270px] rounded-[44px] bg-forest p-3 shadow-[0_40px_80px_-30px_rgba(10,42,28,0.6)] sm:w-[290px]">
         <div className="absolute top-5 left-1/2 z-10 h-5 w-20 -translate-x-1/2 rounded-full bg-forest" />
@@ -156,6 +161,7 @@ function MockupCelular() {
         <div className="text-xs text-white/60">a partir de</div>
         <div className="font-display text-2xl font-extrabold">R$ 997</div>
         <div className="text-xs font-medium text-lime">preço fechado</div>
+      </motion.div>
       </motion.div>
     </motion.div>
   );

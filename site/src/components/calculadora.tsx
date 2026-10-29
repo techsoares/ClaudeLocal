@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { animate, motion, useMotionValue, useReducedMotion, useTransform } from "motion/react";
 import { Check, LayoutTemplate, Newspaper, PanelsTopLeft, ShoppingBag } from "lucide-react";
 import { linkWhatsApp, precos, reais } from "@/lib/config";
+import { modelos } from "@/lib/modelos";
+import { useIlha } from "./ilha";
 import { Reveal } from "./reveal";
 import { Eyebrow, Titulo, WhatsAppIcon } from "./ui";
 
@@ -40,6 +42,33 @@ const extras = [
 type Base = (typeof bases)[number]["id"];
 type Extra = (typeof extras)[number]["id"];
 
+// Planos são atalhos que preenchem a calculadora.
+const planos: { id: string; nome: string; resumo: string; extras: Extra[]; aPartirDe?: boolean; destaque?: boolean; itens: string[] }[] = [
+  {
+    id: "essencial",
+    nome: "Essencial",
+    resumo: "Para colocar o negócio no Google.",
+    extras: [],
+    itens: ["Site de até 5 páginas ou landing page", "Textos escritos para você", "Domínio e hospedagem do 1º ano", "Botão de WhatsApp"],
+  },
+  {
+    id: "conteudo",
+    nome: "Conteúdo",
+    resumo: "Para atrair cliente com artigos.",
+    extras: ["blog"],
+    destaque: true,
+    itens: ["Tudo do Essencial", "Blog pronto para publicar", "Categorias e busca", "Mais chances de aparecer no Google"],
+  },
+  {
+    id: "completo",
+    nome: "Sob medida",
+    resumo: "Loja, login, sistema ou integrações.",
+    extras: ["maior"],
+    aPartirDe: true,
+    itens: ["Tudo do Essencial", "Loja virtual ou área com login", "Sistema ou integração com IA", "Mais de 10 páginas"],
+  },
+];
+
 function ValorAnimado({ valor }: { valor: number }) {
   const reduzir = useReducedMotion();
   const mv = useMotionValue(valor);
@@ -55,21 +84,36 @@ function ValorAnimado({ valor }: { valor: number }) {
   return <motion.span>{texto}</motion.span>;
 }
 
+const somar = (lista: Extra[]) => precos.site + extras.filter((e) => lista.includes(e.id)).reduce((s, e) => s + e.valor, 0);
+
 export function Calculadora() {
   const [base, setBase] = useState<Base>("site");
   const [escolhidos, setEscolhidos] = useState<Extra[]>([]);
+  const [modelo, setModelo] = useState("");
   const [nome, setNome] = useState("");
   const [negocio, setNegocio] = useState("");
+  const { avisar } = useIlha();
 
-  const total = precos.site + extras.filter((e) => escolhidos.includes(e.id)).reduce((s, e) => s + e.valor, 0);
+  const total = somar(escolhidos);
   const metade = total / 2;
-  const alternar = (id: Extra) =>
-    setEscolhidos((atual) => (atual.includes(id) ? atual.filter((x) => x !== id) : [...atual, id]));
+  const alternar = (e: (typeof extras)[number]) => {
+    const tinha = escolhidos.includes(e.id);
+    setEscolhidos((atual) => (tinha ? atual.filter((x) => x !== e.id) : [...atual, e.id]));
+    avisar(tinha ? "Item removido" : "Item adicionado", `${tinha ? "−" : "+"} ${reais(e.valor)} · ${e.titulo.split(",")[0]}`);
+  };
+  const planoAtivo = planos.find((p) => p.extras.length === escolhidos.length && p.extras.every((x) => escolhidos.includes(x)));
+  const escolherPlano = (p: (typeof planos)[number]) => {
+    setEscolhidos(p.extras);
+    avisar(`Plano ${p.nome} selecionado`, `${p.aPartirDe ? "a partir de " : ""}${reais(somar(p.extras))}`);
+    document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const baseEscolhida = bases.find((b) => b.id === base)!;
+  const modeloEscolhido = modelos.find((m) => m.slug === modelo);
   const mensagem = [
     `Oi! Montei meu orçamento no seu site${nome ? `. Meu nome é ${nome.trim()}` : ""}.`,
     negocio ? `Meu negócio: ${negocio.trim()}` : null,
+    modeloEscolhido ? `Modelo escolhido: ${modeloEscolhido.nome} (${modeloEscolhido.segmento})` : null,
     "",
     `• ${baseEscolhida.titulo} (${reais(precos.site)})`,
     ...extras.filter((e) => escolhidos.includes(e.id)).map((e) => `• ${e.titulo} (+ ${reais(e.valor)})`),
@@ -85,13 +129,65 @@ export function Calculadora() {
       <div className="mx-auto max-w-6xl px-5">
         <Reveal className="mx-auto max-w-2xl text-center">
           <Eyebrow>Preço fechado, sem surpresa</Eyebrow>
-          <Titulo>Monte seu orçamento</Titulo>
+          <Titulo>Escolha um plano ou monte o seu</Titulo>
           <p className="mt-5 text-lg text-ink-soft">
-            Escolha o que você precisa e veja o valor na hora. Depois é só mandar para mim no WhatsApp.
+            Pagamento único, metade no início e metade na entrega. Sem mensalidade.
           </p>
         </Reveal>
 
-        <Reveal className="mt-14">
+        <div className="mt-14 grid items-stretch gap-5 lg:grid-cols-3">
+          {planos.map((p, i) => {
+            const ativo = planoAtivo?.id === p.id;
+            return (
+              <Reveal key={p.id} delay={i * 0.08}>
+                <div
+                  className={`relative flex h-full flex-col overflow-hidden rounded-[28px] p-7 transition ${
+                    p.destaque ? "bg-forest text-white shadow-[0_30px_60px_-30px_rgba(10,42,28,0.7)] lg:-my-3 lg:py-10" : "border border-line bg-card"
+                  } ${ativo ? "ring-[3px] ring-brand ring-offset-4 ring-offset-bg-alt" : ""}`}
+                >
+                  {p.destaque && (
+                    <>
+                      <div aria-hidden className="pointer-events-none absolute -top-24 -right-16 size-64 rounded-full bg-[radial-gradient(circle,var(--color-lime)_0%,transparent_70%)] opacity-30" />
+                      <span className="absolute top-6 right-6 rounded-full bg-lime px-3 py-1 text-xs font-bold text-forest">Recomendado</span>
+                    </>
+                  )}
+                  <div className="relative">
+                    <h3 className="font-display text-2xl font-extrabold">{p.nome}</h3>
+                    <p className={`mt-1 text-sm ${p.destaque ? "text-white/65" : "text-ink-soft"}`}>{p.resumo}</p>
+                    <div className="mt-6 flex items-baseline gap-2">
+                      {p.aPartirDe && <span className={`text-sm ${p.destaque ? "text-white/60" : "text-ink-soft"}`}>a partir de</span>}
+                      <span className="font-display text-5xl font-extrabold tracking-tight">{reais(somar(p.extras))}</span>
+                    </div>
+                    <p className={`mt-1 text-sm ${p.destaque ? "text-white/60" : "text-ink-soft"}`}>
+                      ou 2× de {reais(somar(p.extras) / 2)} · pagamento único
+                    </p>
+                    <ul className="mt-7 grid gap-3 text-[15px]">
+                      {p.itens.map((t) => (
+                        <li key={t} className="flex gap-2.5">
+                          <Check className={`mt-0.5 size-4 shrink-0 ${p.destaque ? "text-lime" : "text-brand"}`} strokeWidth={3} /> {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => escolherPlano(p)}
+                    className={`relative mt-8 min-h-12 rounded-full font-semibold transition hover:-translate-y-0.5 ${
+                      p.destaque ? "bg-lime text-forest hover:bg-white" : "border-[1.5px] border-line hover:border-ink"
+                    }`}
+                  >
+                    {ativo ? "Selecionado ✓" : `Escolher ${p.nome}`}
+                  </button>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        <Reveal className="mt-20">
+          <h3 id="calculadora" className="mb-6 scroll-mt-28 text-center font-display text-2xl font-extrabold">
+            Ou monte do seu jeito
+          </h3>
           <div className="grid overflow-hidden rounded-[32px] border border-line bg-card shadow-[0_30px_60px_-40px_rgba(10,42,28,0.45)] lg:grid-cols-[1.25fr_0.75fr]">
             <div className="p-6 md:p-10">
               <fieldset>
@@ -145,7 +241,7 @@ export function Calculadora() {
                           ativo ? "border-brand bg-brand-soft/60" : "border-line hover:border-ink/30"
                         }`}
                       >
-                        <input type="checkbox" checked={ativo} onChange={() => alternar(e.id)} className="sr-only" />
+                        <input type="checkbox" checked={ativo} onChange={() => alternar(e)} className="sr-only" />
                         <span
                           className={`grid size-6 shrink-0 place-items-center rounded-md border-2 transition ${
                             ativo ? "border-brand bg-brand text-white" : "border-line"
@@ -167,6 +263,19 @@ export function Calculadora() {
                   3. Sobre você (opcional)
                 </legend>
                 <div className="grid gap-3 sm:grid-cols-2">
+                  <select
+                    value={modelo}
+                    onChange={(e) => setModelo(e.target.value)}
+                    aria-label="Modelo de partida"
+                    className="min-h-12 rounded-xl border-2 border-line bg-bg px-4 outline-none transition focus:border-brand sm:col-span-2"
+                  >
+                    <option value="">Modelo de partida: quero algo do zero</option>
+                    {modelos.map((m) => (
+                      <option key={m.slug} value={m.slug}>
+                        Modelo {m.nome} · {m.segmento}
+                      </option>
+                    ))}
+                  </select>
                   <input
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}

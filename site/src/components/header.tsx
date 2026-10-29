@@ -1,17 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { config } from "@/lib/config";
 import { Botao, WhatsAppIcon } from "./ui";
 
 const links = [
-  { href: "#incluso", label: "O que inclui" },
-  { href: "#como-funciona", label: "Como funciona" },
-  { href: "#orcamento", label: "Preços" },
-  { href: "#portfolio", label: "Portfólio" },
-  { href: "#duvidas", label: "Dúvidas" },
+  { href: "/#incluso", label: "O que inclui" },
+  { href: "/modelos", label: "Modelos" },
+  { href: "/#orcamento", label: "Preços" },
+  { href: "/#portfolio", label: "Portfólio" },
+  { href: "/#duvidas", label: "Dúvidas" },
 ];
 
 export function Header() {
@@ -32,16 +33,16 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-4 px-5">
-        <a href="#" className="font-display text-xl font-extrabold tracking-tight whitespace-nowrap">
+        <Link href="/" className="font-display text-xl font-extrabold tracking-tight whitespace-nowrap">
           {config.marca}
           <span className="text-brand">.</span>
-        </a>
+        </Link>
 
         <nav aria-label="Seções" className="hidden items-center gap-7 text-[15px] text-ink-soft lg:flex">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="transition hover:text-ink">
+            <Link key={l.href} href={l.href} className="transition hover:text-ink">
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -74,14 +75,14 @@ export function Header() {
           >
             <div className="mx-auto flex max-w-6xl flex-col px-5 py-3">
               {links.map((l) => (
-                <a
+                <Link
                   key={l.href}
                   href={l.href}
                   onClick={() => setAberto(false)}
                   className="border-b border-line py-3.5 text-lg font-medium last:border-0"
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
             </div>
           </motion.nav>
