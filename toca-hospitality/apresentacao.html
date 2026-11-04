@@ -161,6 +161,22 @@ a { color: inherit; }
 .guias .rolagem { height: 460px; }
 @media (max-width: 640px) { .guias { grid-template-columns: 1fr; } .guias figure:first-child { display: none; } }
 .sec__lead b { color: var(--verde); font-weight: 600; }
+
+/* impressão / PDF: A4, sem cortar blocos no meio */
+@page { size: A4; margin: 0; }
+@media print {
+  html, body { background: var(--linho); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .in { max-width: none; padding-left: 14mm; padding-right: 14mm; }
+  .sec .in { padding-block: 14mm; }
+  .capa .in { padding-block: 22mm 18mm; }
+  .sumario a { border-color: rgba(216, 200, 176, .5); }
+  .opcao, .folder, .navegador, .seo, .elementos, .paleta, .tipos > div, .lp-grid, .guias, .nota-rec, .checklist li, figure { break-inside: avoid; }
+  .sec { break-before: page; }
+  .sec__cab { break-after: avoid; }
+  .folder { padding-block: 8mm; }
+  .rolagem { overflow: hidden; }
+  .opcoes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5mm; }
+}
 </style>
 
 </head>
