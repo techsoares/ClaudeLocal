@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,350;0,6..72,450;1,6..72,350;1,6..72,450&display=swap");
+:root {
+  --verde: #1F2B24; --verde-2: #2B3A31; --musgo: #55604B;
+  --terra: #A65A32; --terra-txt: #8E4726; --terra-claro: #D99A70;
+  --bege: #D8C8B0; --linho: #F3ECE1; --papel: #EAE0D0; --preto: #1B1916;
+  --tinta: #2A2622; --tinta-2: #5B544C;
+  --serif: "Newsreader", Georgia, serif; --sans: "Hanken Grotesk", system-ui, sans-serif; --mono: "DM Mono", ui-monospace, monospace;
+  --sangria: 3mm;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #8f8a82; }
+body { font-family: var(--sans); color: var(--tinta); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+img { display: block; max-width: 100%; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--verde); letter-spacing: -0.01em; }
+em { font-style: italic; }
+.folha { position: relative; overflow: hidden; background: var(--linho); margin: 10mm auto; page-break-after: always; break-after: page; }
+.folha:last-child { page-break-after: auto; break-after: auto; }
+@media print { html, body { background: none; } .folha { margin: 0; } .guia { display: none !important; } }
+.kicker { font-size: 6.4pt; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--terra-txt); }
+/* linhas-guia de dobra/corte (somem na impressão) */
+.guia { position: absolute; pointer-events: none; z-index: 9; }
+.guia--dobra { top: 0; bottom: 0; width: 0; border-left: .3mm dashed rgba(0,160,255,.7); }
+.guia--seg { inset: var(--sangria); border: .3mm solid rgba(255,0,140,.55); }

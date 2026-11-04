@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>TOCA · Folder 3 · Arco (DL com faca especial)</title>
+<link rel="stylesheet" href="assets/folder.css">
+<style>
+  @page { size: 105mm 216mm; margin: 0; }
+  .folha { width: 105mm; height: 216mm; display: flex; flex-direction: column; }
+  /* pré-visualização do corte em arco (na tela). Na impressão a arte sai retangular com sangria + página da faca. */
+  @media screen { .recorte .folha:not(.faca) { clip-path: url(#arcoClip); } }
+
+  /* ---------- FRENTE ---------- */
+  .frente { background: var(--terra); color: var(--linho); }
+  .frente .janela { position: absolute; left: 3mm; right: 3mm; top: 3mm; height: 118mm; overflow: hidden; background: #E4BC94; }
+  .frente .janela img { position: absolute; left: 50%; top: -11mm; width: 150mm; transform: translateX(-50%); }
+  .frente .texto { margin-top: auto; padding: 0 11mm 14mm; }
+  .frente .kicker { color: #F1D3B8; }
+  .frente h1 { color: var(--linho); font-size: 23pt; line-height: 1; font-weight: 350; margin: 3mm 0 5mm; }
+  .frente h1 em { display: block; color: #F7E2CC; }
+  .frente .marca { display: flex; justify-content: space-between; align-items: flex-end; border-top: .3mm solid rgba(243,236,225,.45); padding-top: 4mm; }
+  .frente .marca img { width: 27mm; }
+  .frente .marca span { font-family: var(--mono); font-size: 6pt; letter-spacing: .08em; text-transform: uppercase; color: #F1D3B8; }
+
+  /* ---------- VERSO ---------- */
+  .verso { background: var(--linho); padding: 42mm 11mm 13mm; }
+  .verso .simbolo { position: absolute; top: 15mm; left: 50%; transform: translateX(-50%); width: 18mm; }
+  .verso h2 { font-size: 17pt; line-height: 1.02; text-align: center; }
+  .verso h2 em { color: var(--terra-txt); display: block; }
+  .verso ol { list-style: none; margin-top: 6mm; border-top: .3mm solid var(--verde); }
+  .verso li { display: grid; grid-template-columns: 7mm 1fr; padding: 2.5mm 0; border-bottom: .25mm solid rgba(31,43,36,.18); }
+  .verso .n { font-family: var(--serif); font-style: italic; font-size: 7.5pt; color: var(--terra-txt); padding-top: .5mm; }
+  .verso h3 { font-size: 10.5pt; line-height: 1.1; }
+  .verso li p { grid-column: 2; font-size: 6.6pt; color: var(--tinta-2); margin-top: .5mm; line-height: 1.4; }
+  .verso .flex { margin-top: 4mm; font-family: var(--serif); font-style: italic; font-size: 9pt; color: var(--verde); text-align: center; }
+  .verso .cta { margin-top: auto; background: var(--verde); color: var(--bege); padding: 4mm; display: grid; grid-template-columns: 1fr 19mm; gap: 3.5mm; align-items: center; }
+  .verso .cta .qr { background: var(--linho); padding: 1.6mm; }
+  .verso .cta small { font-size: 6pt; display: block; line-height: 1.35; }
+  .verso .cta .fone { font-family: var(--serif); font-size: 13.5pt; color: var(--linho); margin: 1mm 0; line-height: 1; white-space: nowrap; }
+
+  /* ---------- FACA ---------- */
+  .faca { background: #fff; }
+  .faca svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+</head>
+<body class="recorte">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <clipPath id="arcoClip" clipPathUnits="objectBoundingBox">
+    <path d="M.0286 .9861 V.2431 A.4714 .2292 0 0 1 .9714 .2431 V.9861 Z"/>
+  </clipPath>
+</svg>
+
+<!-- ======================= FRENTE ======================= -->
+<section class="folha frente" aria-label="Frente">
+  <div class="janela"><img src="assets/janela.svg" alt=""></div>
+  <div class="texto">
+    <p class="kicker">Imóveis de temporada</p>
+    <h1>Seu imóvel trabalhando. <em>A TOCA cuidando.</em></h1>
+    <div class="marca">
+      <img src="assets/logo-horizontal-linho.svg" alt="TOCA Hospitality">
+      <span>Nº 41</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= VERSO ======================= -->
+<section class="folha verso" aria-label="Verso">
+  <img class="simbolo" src="../logo/opcao-b-arco/toca-arco-simbolo.svg" alt="" style="border-radius:50%">
+  <h2>Você acompanha. <em>A TOCA cuida.</em></h2>
+  <ol>
+    <li><span class="n">01</span><h3>Atendimento ao hóspede</h3><p>Suporte e comunicação durante a hospedagem.</p></li>
+    <li><span class="n">02</span><h3>Check-in e check-out</h3><p>Chegada e saída organizadas e acompanhadas.</p></li>
+    <li><span class="n">03</span><h3>Organização da limpeza</h3><p>Coordenação entre uma estadia e outra.</p></li>
+    <li><span class="n">04</span><h3>Preparação entre estadias</h3><p>Imóvel pronto para o próximo hóspede.</p></li>
+    <li><span class="n">05</span><h3>Suporte na hospedagem</h3><p>Necessidades e imprevistos resolvidos.</p></li>
+    <li><span class="n">06</span><h3>Acompanhamento</h3><p>Os detalhes que mantêm tudo funcionando.</p></li>
+  </ol>
+  <p class="flex">Operação completa ou sob medida.</p>
+  <div class="cta">
+    <div>
+      <small>Chame no WhatsApp</small>
+      <p class="fone">(41) 99896-0730</p>
+      <small>Curitiba e região</small>
+    </div>
+    <img class="qr" src="assets/qr-whatsapp-verde.svg" alt="QR code para o WhatsApp da TOCA">
+  </div>
+</section>
+
+<!-- ======================= FACA (linha de corte) ======================= -->
+<section class="folha faca" aria-label="Faca especial">
+  <svg viewBox="0 0 105 216" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="105" height="216" fill="none" stroke="#bbb" stroke-width=".2" stroke-dasharray="1 1"/>
+    <path d="M3 213 V52.5 A49.5 49.5 0 0 1 102 52.5 V213 Z" fill="none" stroke="#EC008C" stroke-width=".25"/>
+    <text x="52.5" y="120" text-anchor="middle" font-family="DM Mono, monospace" font-size="3.4" fill="#EC008C">FACA ESPECIAL · ARCO</text>
+    <text x="52.5" y="126" text-anchor="middle" font-family="DM Mono, monospace" font-size="2.6" fill="#555">formato final 99 × 210 mm · raio do arco 49,5 mm</text>
+    <text x="52.5" y="131" text-anchor="middle" font-family="DM Mono, monospace" font-size="2.6" fill="#555">sangria 3 mm · linha de corte em magenta (não imprimir)</text>
+  </svg>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>TOCA · Folder 1 · Editorial (A4 tri-dobra)</title>
+<link rel="stylesheet" href="assets/folder.css">
+<style>
+  @page { size: 303mm 216mm; margin: 0; }
+  .folha { width: 303mm; height: 216mm; display: grid; grid-template-columns: 102mm 99mm 102mm; }
+  .painel { position: relative; padding: 15mm 11mm 12mm; display: flex; flex-direction: column; }
+  .painel:first-child { padding-left: 14mm; }
+  .painel:last-child { padding-right: 14mm; }
+
+  /* ---------- EXTERNA ---------- */
+  .aba h2 { font-size: 20pt; line-height: 1.05; margin: 4mm 0 7mm; }
+  .aba h2 em { color: var(--terra-txt); }
+  .motivos { list-style: none; counter-reset: m; }
+  .motivos li { counter-increment: m; display: grid; grid-template-columns: 8mm 1fr; padding: 3.2mm 0; border-top: .25mm solid rgba(31,43,36,.22); font-family: var(--serif); font-size: 11.5pt; line-height: 1.25; color: var(--verde); }
+  .motivos li::before { content: counter(m, decimal-leading-zero); font-style: italic; color: var(--terra-txt); font-size: 9pt; padding-top: .6mm; }
+  .aba .chaveiro { margin-top: auto; align-self: flex-start; display: flex; align-items: center; gap: 4mm; }
+  .aba .chaveiro img { width: 62mm; margin-left: -3mm; }
+  .aba .chaveiro p { font-size: 7pt; color: var(--tinta-2); line-height: 1.4; max-width: 30mm; }
+
+  .contra { background: var(--papel); }
+  .contra h2 { font-size: 24pt; line-height: 1.02; margin-top: 4mm; }
+  .contra h2 em { color: var(--terra-txt); display: block; }
+  .contra .divide { margin-top: 8mm; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: .25mm solid var(--verde); }
+  .contra .divide div { padding: 4mm; font-size: 7.4pt; line-height: 1.45; }
+  .contra .divide div:last-child { background: var(--terra); color: var(--linho); }
+  .contra .divide b { display: block; font-size: 6pt; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 2mm; }
+  .passos { margin-top: 8mm; list-style: none; counter-reset: p; }
+  .passos li { counter-increment: p; display: grid; grid-template-columns: 7mm 1fr; padding: 2.4mm 0; font-size: 8pt; line-height: 1.4; color: var(--tinta-2); }
+  .passos li::before { content: counter(p); width: 4.6mm; height: 4.6mm; border-radius: 50%; border: .25mm solid var(--terra); color: var(--terra-txt); font-family: var(--serif); font-size: 7pt; display: grid; place-items: center; }
+  .passos b { color: var(--verde); font-weight: 600; }
+  .contato { margin-top: auto; display: grid; grid-template-columns: 26mm 1fr; gap: 5mm; align-items: end; }
+  .contato .qr { background: var(--linho); padding: 2.2mm; border-radius: .8mm; }
+  .contato p { font-size: 7pt; color: var(--tinta-2); line-height: 1.4; }
+  .contato .fone { font-family: var(--serif); font-size: 17pt; color: var(--verde); line-height: 1; margin: 1.5mm 0 2mm; letter-spacing: -.01em; }
+  .contra .assina { margin-top: 7mm; padding-top: 4mm; border-top: .25mm solid rgba(31,43,36,.25); display: flex; justify-content: space-between; align-items: center; }
+  .contra .assina img { width: 22mm; }
+  .contra .assina span { font-size: 6.2pt; color: var(--tinta-2); letter-spacing: .08em; }
+
+  .capa { background: var(--verde); color: var(--bege); align-items: center; text-align: center; padding-top: 22mm; }
+  .capa .logo { width: 58mm; }
+  .capa .tag { font-family: var(--serif); font-style: italic; font-size: 13pt; color: var(--linho); margin-top: 6mm; }
+  .capa .arco { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 74mm; height: 104mm; border-radius: 37mm 37mm 0 0; overflow: hidden; background: var(--terra); }
+  .capa .arco img { width: 100%; position: absolute; bottom: -10mm; left: 0; transform: scale(1.18); transform-origin: bottom center; }
+  .capa .canto { position: absolute; top: 9mm; right: 14mm; font-size: 6pt; letter-spacing: .2em; text-transform: uppercase; color: var(--bege); opacity: .7; }
+
+  /* ---------- INTERNA ---------- */
+  .abre { background: var(--linho); }
+  .abre h1 { font-size: 31pt; line-height: .98; font-weight: 350; margin-top: 5mm; }
+  .abre h1 em { color: var(--terra-txt); display: block; }
+  .abre .lead { margin-top: 8mm; font-size: 9.2pt; line-height: 1.55; color: var(--tinta-2); }
+  .abre .lead + .lead { margin-top: 3mm; }
+  .abre .ficha { margin-top: auto; background: #FBF7F0; padding: 4mm 4.5mm; transform: rotate(-1.8deg); box-shadow: 0 2mm 5mm -2mm rgba(31,43,36,.35); font-size: 7pt; width: 62mm; }
+  .ficha .cab { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 6pt; letter-spacing: .06em; text-transform: uppercase; color: var(--musgo); padding-bottom: 2mm; border-bottom: .25mm dashed var(--bege); }
+  .ficha ul { list-style: none; padding-top: 2mm; display: grid; gap: 1.4mm; }
+  .ficha li { display: grid; grid-template-columns: 4mm 11mm 1fr; align-items: center; color: var(--tinta-2); }
+  .ficha li::before { content: ""; width: 2.4mm; height: 2.4mm; border: .3mm solid var(--verde); border-radius: .4mm; }
+  .ficha li.ok::before { background: var(--verde); }
+  .ficha b { font-family: var(--mono); font-weight: 500; font-size: 6.4pt; }
+
+  .servs { grid-column: 2 / 4; display: grid; grid-template-columns: 99mm 102mm; grid-template-rows: auto 1fr auto; padding: 0; }
+  .formatos { grid-column: 1 / 3; align-self: end; margin: 0 14mm 0 11mm; display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .formatos div { border-top: .9mm solid var(--terra); background: #FBF7F0; padding: 4mm 5mm 4.5mm; }
+  .formatos div:last-child { background: var(--papel); }
+  .formatos h3 { font-size: 13pt; margin-bottom: 1.5mm; }
+  .formatos p { font-size: 7.8pt; line-height: 1.45; color: var(--tinta-2); }
+  .formatos small { display:block; font-size: 6.2pt; letter-spacing: .14em; text-transform: uppercase; color: var(--musgo); font-weight: 600; margin-bottom: 1.5mm; }
+  .servs .col { padding: 15mm 11mm 0; }
+  .servs .col:nth-child(2) { padding-right: 14mm; }
+  .servs h2 { font-size: 22pt; line-height: 1; margin: 4mm 0 6mm; }
+  .servs h2 em { color: var(--terra-txt); }
+  .servs ol { list-style: none; }
+  .servs .col li { padding: 4.6mm 0 5.2mm; border-top: .25mm solid rgba(31,43,36,.22); display: grid; grid-template-columns: 8mm 1fr; }
+  .servs .col li:first-child { border-top-color: var(--verde); }
+  .servs .n { font-family: var(--serif); font-style: italic; color: var(--terra-txt); font-size: 9pt; padding-top: .6mm; }
+  .servs h3 { font-size: 14pt; line-height: 1.1; }
+  .servs .col li p { grid-column: 2; font-size: 8.2pt; line-height: 1.45; color: var(--tinta-2); margin-top: 1.2mm; }
+  .servs .col--dir { padding-top: 33.5mm; }
+  .servs .col li { grid-template-columns: 8mm 1fr; }
+
+  .troca { grid-column: 1 / 3; background: var(--verde); color: var(--bege); padding: 7mm 14mm 9mm 11mm; margin-top: 6mm; }
+  .troca .t { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5mm; }
+  .troca .t h3 { color: var(--linho); font-size: 13pt; }
+  .troca .t h3 em { color: var(--terra-claro); }
+  .troca .t span { font-family: var(--serif); font-style: italic; font-size: 7pt; opacity: .7; }
+  .troca ol { list-style: none; display: grid; grid-template-columns: repeat(6, 1fr); position: relative; }
+  .troca ol::before { content: ""; position: absolute; left: 0; right: 0; top: 6.2mm; border-top: .25mm solid rgba(216,200,176,.4); }
+  .troca li { position: relative; padding-right: 2mm; }
+  .troca li::after { content: ""; position: absolute; left: 0; top: 5.1mm; width: 2.2mm; height: 2.2mm; border-radius: 50%; background: var(--verde); border: .3mm solid var(--terra-claro); }
+  .troca li:last-child::after { background: var(--terra-claro); }
+  .troca time { font-family: var(--serif); font-style: italic; color: var(--linho); font-size: 10pt; display: block; height: 5mm; }
+  .troca b { display: block; margin-top: 5mm; color: var(--linho); font-family: var(--serif); font-weight: 400; font-size: 9pt; }
+  .troca small { display: block; font-size: 6.2pt; line-height: 1.35; margin-top: .8mm; opacity: .85; }
+</style>
+</head>
+<body>
+
+<!-- ======================= EXTERNA ======================= -->
+<section class="folha" aria-label="Lado externo">
+  <div class="painel aba">
+    <p class="kicker">Por que a TOCA</p>
+    <h2>Mais tempo para você. <em>Mais cuidado com o imóvel.</em></h2>
+    <ol class="motivos">
+      <li>Mais praticidade no dia a dia</li>
+      <li>Atendimento atencioso aos hóspedes</li>
+      <li>Cuidado de verdade com o seu imóvel</li>
+      <li>Serviços flexíveis, do jeito que você precisa</li>
+      <li>Tranquilidade para aproveitar os resultados</li>
+    </ol>
+    <div class="chaveiro">
+      <img src="../logo/opcao-b-arco/toca-arco-simbolo.svg" alt="" style="width:16mm;border-radius:50%">
+      <p>A porta está aberta. Chame a TOCA no WhatsApp: <span style="white-space:nowrap">(41) 99896-0730</span></p>
+    </div>
+  </div>
+
+  <div class="painel contra">
+    <p class="kicker">Combinado</p>
+    <h2>Você acompanha. <em>A TOCA cuida.</em></h2>
+    <div class="divide">
+      <div><b>Fica com você</b>As decisões sobre o imóvel e os resultados do investimento.</div>
+      <div><b>Fica com a TOCA</b>Hóspedes, chegadas e saídas, limpeza, preparação e imprevistos.</div>
+    </div>
+    <p class="kicker" style="margin-top:9mm">Como começar</p>
+    <ol class="passos">
+      <li><span><b>Você chama no WhatsApp</b> e conta sobre o imóvel.</span></li>
+      <li><span><b>A gente conhece a sua rotina</b> e o que você precisa.</span></li>
+      <li><span><b>Montamos o formato juntos</b>: completo ou sob medida.</span></li>
+    </ol>
+    <div class="contato">
+      <img class="qr" src="assets/qr-whatsapp-verde.svg" alt="QR code para o WhatsApp da TOCA">
+      <div>
+        <p>Aponte a câmera ou chame no WhatsApp</p>
+        <p class="fone">(41) 99896-0730</p>
+        <p>Conte sobre o seu imóvel. A gente monta o formato com você.</p>
+      </div>
+    </div>
+    <div class="assina">
+      <img src="assets/logo-horizontal.svg" alt="TOCA Hospitality">
+      <span>Curitiba e região</span>
+    </div>
+  </div>
+
+  <div class="painel capa">
+    <span class="canto">Imóveis de temporada</span>
+    <img class="logo" src="assets/logo-negativo.svg" alt="TOCA Hospitality">
+    <p class="tag">Seu imóvel. Nosso cuidado.</p>
+    <div class="arco"><img src="assets/janela.svg" alt=""></div>
+  </div>
+
+  <i class="guia guia--seg"></i>
+  <i class="guia guia--dobra" style="left:102mm"></i>
+  <i class="guia guia--dobra" style="left:201mm"></i>
+</section>
+
+<!-- ======================= INTERNA ======================= -->
+<section class="folha" aria-label="Lado interno">
+  <div class="painel abre">
+    <p class="kicker">TOCA Hospitality</p>
+    <h1>Seu imóvel trabalhando. <em>A TOCA cuidando.</em></h1>
+    <p class="lead">Você investiu em um imóvel para gerar renda com hospedagens, mas não tem tempo para cuidar de toda a operação?</p>
+    <p class="lead">A TOCA assume a rotina: menos preocupação para você, uma experiência melhor para quem se hospeda.</p>
+    <div class="ficha">
+      <p class="cab"><span>Dia de troca</span><span>Apto 704</span></p>
+      <ul>
+        <li class="ok"><b>11:00</b>Check-out conferido</li>
+        <li class="ok"><b>13:40</b>Limpeza concluída</li>
+        <li class="ok"><b>14:20</b>Enxoval e amenities</li>
+        <li><b>15:00</b>Check-in · 4 hóspedes</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="servs">
+    <div class="col">
+      <p class="kicker">O que fazemos</p>
+      <h2>O que fica <em>com a gente</em></h2>
+      <ol>
+        <li><span class="n">01</span><h3>Atendimento ao hóspede</h3><p>Suporte e comunicação durante toda a hospedagem.</p></li>
+        <li><span class="n">02</span><h3>Check-in e check-out</h3><p>Organização e acompanhamento da chegada e da saída.</p></li>
+        <li><span class="n">03</span><h3>Organização da limpeza</h3><p>Coordenação da limpeza entre uma estadia e outra.</p></li>
+      </ol>
+    </div>
+    <div class="col col--dir">
+      <ol>
+        <li><span class="n">04</span><h3>Preparação entre estadias</h3><p>Enxoval, reposição e o imóvel pronto para o próximo hóspede.</p></li>
+        <li><span class="n">05</span><h3>Suporte durante a estadia</h3><p>Ajuda com necessidades e imprevistos, na hora em que acontecem.</p></li>
+        <li><span class="n">06</span><h3>Acompanhamento da operação</h3><p>Cuidado com os detalhes para manter tudo funcionando.</p></li>
+      </ol>
+    </div>
+    <div class="formatos">
+      <div><small>Formato</small><h3>Operação completa</h3><p>A TOCA assume a rotina inteira. Você recebe notícias e acompanha.</p></div>
+      <div><small>Formato</small><h3>Sob medida</h3><p>Você escolhe só as partes que quer entregar. Dá para começar pequeno.</p></div>
+    </div>
+    <div class="troca">
+      <div class="t"><h3>Um dia de troca <em>com a TOCA</em></h3><span>horários ilustrativos</span></div>
+      <ol>
+        <li><time>11h</time><b>Saída</b><small>check-out e chaves</small></li>
+        <li><time>11h30</time><b>Vistoria</b><small>imóvel conferido</small></li>
+        <li><time>12h</time><b>Limpeza</b><small>com checklist da casa</small></li>
+        <li><time>14h</time><b>Preparação</b><small>enxoval e detalhes</small></li>
+        <li><time>15h</time><b>Chegada</b><small>hóspede orientado</small></li>
+        <li><time>e depois</time><b>Estadia</b><small>suporte até a saída</small></li>
+      </ol>
+    </div>
+  </div>
+
+  <i class="guia guia--seg"></i>
+  <i class="guia guia--dobra" style="left:102mm"></i>
+  <i class="guia guia--dobra" style="left:201mm"></i>
+</section>
+
+</body>
+</html>

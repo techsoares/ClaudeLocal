@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>TOCA · Folder 2 · Ficha de cuidado (A5 frente e verso)</title>
+<link rel="stylesheet" href="assets/folder.css">
+<style>
+  @page { size: 154mm 216mm; margin: 0; }
+  .folha { width: 154mm; height: 216mm; padding: 15mm 14mm 13mm; display: flex; flex-direction: column; }
+
+  /* ---------- FRENTE ---------- */
+  .frente { background: var(--papel); }
+  .frente::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 9mm; background: var(--verde); }
+  .picote { position: absolute; left: 0; right: 0; top: 9mm; height: 3mm; background: radial-gradient(circle at 1.5mm 0, var(--verde) 1mm, transparent 1.1mm) 0 0 / 3mm 3mm repeat-x; }
+  .cab { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--mono); font-size: 6.6pt; letter-spacing: .08em; text-transform: uppercase; color: var(--musgo); padding: 2mm 0 3mm; border-bottom: .3mm solid var(--verde); }
+  .cab b { font-weight: 500; color: var(--verde); }
+  .frente h1 { font-size: 30pt; line-height: .98; font-weight: 350; margin: 8mm 0 3mm; }
+  .frente h1 em { color: var(--terra-txt); display: block; }
+  .frente .lead { font-size: 8.6pt; line-height: 1.5; color: var(--tinta-2); max-width: 100mm; }
+
+  .lista { margin-top: 8mm; border-top: .3mm solid var(--verde); }
+  .lista .linha-cab { display: grid; grid-template-columns: 9mm 1fr 18mm; font-family: var(--mono); font-size: 5.8pt; letter-spacing: .08em; text-transform: uppercase; color: var(--musgo); padding: 1.8mm 0; border-bottom: .25mm solid rgba(31,43,36,.3); }
+  .lista .item { display: grid; grid-template-columns: 9mm 1fr 18mm; align-items: center; padding: 2.7mm 0; border-bottom: .25mm dashed rgba(31,43,36,.3); }
+  .caixa { width: 4.2mm; height: 4.2mm; border: .35mm solid var(--verde); border-radius: .5mm; position: relative; }
+  .caixa::after { content: ""; position: absolute; left: .7mm; top: -.6mm; width: 3.6mm; height: 2.2mm; border-left: .7mm solid var(--terra); border-bottom: .7mm solid var(--terra); transform: rotate(-48deg); }
+  .item h3 { font-size: 11.5pt; line-height: 1.1; }
+  .item p { font-size: 7pt; color: var(--tinta-2); margin-top: .6mm; }
+  .item .q { font-family: var(--mono); font-size: 6.2pt; color: var(--musgo); text-align: right; }
+
+  .assina { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; }
+  .assina .resp { font-family: var(--mono); font-size: 6pt; text-transform: uppercase; letter-spacing: .08em; color: var(--musgo); }
+  .assina .resp span { display: block; font-family: var(--serif); text-transform: none; letter-spacing: 0; font-style: italic; font-size: 16pt; color: var(--verde); border-bottom: .3mm solid var(--verde); padding: 0 8mm 0 0; margin-bottom: 1.5mm; }
+  .carimbo { width: 30mm; transform: rotate(-12deg); margin-right: -2mm; margin-bottom: -2mm; opacity: .92; }
+
+  /* ---------- VERSO ---------- */
+  .verso { background: var(--verde); color: var(--bege); }
+  .verso .cab { color: var(--bege); border-bottom-color: rgba(216,200,176,.5); }
+  .verso .cab b { color: var(--linho); }
+  .verso h2 { color: var(--linho); font-size: 25pt; line-height: 1; margin: 8mm 0 0; font-weight: 350; }
+  .verso h2 em { color: var(--terra-claro); display: block; }
+  .duas { margin-top: 7mm; display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .duas div { border-top: .3mm solid rgba(216,200,176,.5); padding-top: 2.5mm; font-size: 7.6pt; line-height: 1.5; }
+  .duas b { display: block; font-family: var(--mono); font-weight: 500; font-size: 6pt; letter-spacing: .1em; text-transform: uppercase; color: var(--terra-claro); margin-bottom: 1.5mm; }
+
+  .dia { margin-top: 7mm; }
+  .dia h3 { color: var(--linho); font-size: 12pt; margin-bottom: 3mm; }
+  .dia h3 small { font-family: var(--serif); font-style: italic; font-size: 7pt; color: var(--bege); opacity: .7; margin-left: 2mm; }
+  .dia ol { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: .3mm solid rgba(216,200,176,.4); }
+  .dia li { padding: 2.6mm 3mm 3mm; border-right: .3mm solid rgba(216,200,176,.4); border-bottom: .3mm solid rgba(216,200,176,.4); }
+  .dia li:nth-child(3n) { border-right: 0; }
+  .dia li:nth-child(n+4) { border-bottom: 0; }
+  .dia time { font-family: var(--mono); font-size: 6.4pt; color: var(--terra-claro); }
+  .dia b { display: block; color: var(--linho); font-family: var(--serif); font-weight: 400; font-size: 10pt; margin-top: .8mm; }
+  .dia small { font-size: 6.2pt; opacity: .85; }
+
+  .cta { margin-top: auto; background: var(--linho); color: var(--verde); padding: 5mm; display: grid; grid-template-columns: 1fr 24mm; gap: 5mm; align-items: center; border-radius: .6mm; }
+  .cta p { font-size: 7.2pt; color: var(--tinta-2); line-height: 1.45; }
+  .cta .fone { font-family: var(--serif); font-size: 19pt; color: var(--verde); margin: 1mm 0 1.5mm; line-height: 1; }
+  .rodape { margin-top: 5mm; display: flex; justify-content: space-between; align-items: center; }
+  .rodape img { width: 26mm; }
+  .rodape span { font-family: var(--serif); font-style: italic; font-size: 8pt; color: var(--bege); }
+</style>
+</head>
+<body>
+
+<!-- ======================= FRENTE ======================= -->
+<section class="folha frente" aria-label="Frente">
+  <i class="picote"></i>
+  <div class="cab"><span><b>TOCA</b> · Ficha de cuidado</span><span>Nº 41 · imóvel de temporada</span></div>
+  <h1>Seu imóvel trabalhando. <em>A TOCA cuidando.</em></h1>
+  <p class="lead">Você investiu num imóvel para gerar renda com hospedagens. A gente cuida da rotina, item por item, para você só acompanhar.</p>
+
+  <div class="lista">
+    <div class="linha-cab"><span></span><span>Serviço</span><span style="text-align:right">Quem cuida</span></div>
+    <div class="item"><i class="caixa"></i><div><h3>Atendimento ao hóspede</h3><p>Suporte e comunicação durante a hospedagem</p></div><span class="q">TOCA</span></div>
+    <div class="item"><i class="caixa"></i><div><h3>Check-in e check-out</h3><p>Chegada e saída organizadas e acompanhadas</p></div><span class="q">TOCA</span></div>
+    <div class="item"><i class="caixa"></i><div><h3>Organização da limpeza</h3><p>Limpeza coordenada entre uma estadia e outra</p></div><span class="q">TOCA</span></div>
+    <div class="item"><i class="caixa"></i><div><h3>Preparação entre estadias</h3><p>Imóvel pronto para o próximo hóspede</p></div><span class="q">TOCA</span></div>
+    <div class="item"><i class="caixa"></i><div><h3>Suporte durante a hospedagem</h3><p>Necessidades e imprevistos resolvidos</p></div><span class="q">TOCA</span></div>
+    <div class="item"><i class="caixa"></i><div><h3>Acompanhamento da operação</h3><p>Os detalhes que mantêm tudo funcionando</p></div><span class="q">TOCA</span></div>
+  </div>
+
+  <div class="assina">
+    <p class="resp"><span>você só acompanha</span>Proprietário(a)</p>
+    <svg class="carimbo" viewBox="0 0 120 120" aria-hidden="true">
+      <defs><path id="circ" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/></defs>
+      <g fill="none" stroke="#A65A32"><circle cx="60" cy="60" r="56" stroke-width="2.4"/><circle cx="60" cy="60" r="33" stroke-width="1.2"/></g>
+      <text font-family="DM Mono, monospace" font-size="9.4" letter-spacing="2.6" fill="#A65A32"><textPath href="#circ">TOCA HOSPITALITY · CUIDADO DE PERTO ·</textPath></text>
+      <path d="M48 78 V56 A12 12 0 0 1 72 56 V78 Z" fill="#A65A32"/><path d="M42 78 H78" stroke="#A65A32" stroke-width="1.6"/>
+    </svg>
+  </div>
+  <i class="guia guia--seg"></i>
+</section>
+
+<!-- ======================= VERSO ======================= -->
+<section class="folha verso" aria-label="Verso">
+  <div class="cab"><span><b>Como funciona</b></span><span>flexível, do seu jeito</span></div>
+  <h2>Você acompanha. <em>A TOCA cuida.</em></h2>
+
+  <div class="duas">
+    <div><b>Fica com você</b>As decisões sobre o imóvel e os resultados do investimento.</div>
+    <div><b>Fica com a TOCA</b>Hóspedes, chegadas e saídas, limpeza, preparação e imprevistos.</div>
+  </div>
+
+  <div class="dia">
+    <h3>Um dia de troca <small>horários ilustrativos</small></h3>
+    <ol>
+      <li><time>11:00</time><b>Saída</b><small>check-out e chaves</small></li>
+      <li><time>11:30</time><b>Vistoria</b><small>imóvel conferido</small></li>
+      <li><time>12:00</time><b>Limpeza</b><small>com checklist</small></li>
+      <li><time>14:00</time><b>Preparação</b><small>enxoval e detalhes</small></li>
+      <li><time>15:00</time><b>Chegada</b><small>hóspede orientado</small></li>
+      <li><time>depois</time><b>Estadia</b><small>suporte até a saída</small></li>
+    </ol>
+  </div>
+
+  <div class="duas" style="margin:6mm 0 6mm">
+    <div><b>Operação completa</b>A TOCA assume a rotina inteira do imóvel. Você recebe notícias.</div>
+    <div><b>Sob medida</b>Só check-in e limpeza? Só o atendimento? Você escolhe as partes.</div>
+  </div>
+
+  <div class="cta">
+    <div>
+      <p>Operação completa ou só as partes que você precisa. Vamos conversar?</p>
+      <p class="fone">(41) 99896-0730</p>
+      <p>WhatsApp · Curitiba e região</p>
+    </div>
+    <img src="assets/qr-whatsapp-verde.svg" alt="QR code para o WhatsApp da TOCA">
+  </div>
+  <div class="rodape">
+    <img src="assets/logo-horizontal-negativo.svg" alt="TOCA Hospitality">
+    <span>Seu imóvel. Nosso cuidado.</span>
+  </div>
+  <i class="guia guia--seg"></i>
+</section>
+
+</body>
+</html>

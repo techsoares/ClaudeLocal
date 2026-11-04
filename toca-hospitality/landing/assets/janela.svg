@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 540" role="img" aria-label="Janela em arco com vista para araucárias ao entardecer">
+  <defs>
+    <clipPath id="vao">
+      <path d="M40 500 V190 A160 160 0 0 1 360 190 V500 Z"/>
+    </clipPath>
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C98E64"/>
+      <stop offset=".45" stop-color="#E4BC94"/>
+      <stop offset="1" stop-color="#F1DEC6"/>
+    </linearGradient>
+    <!-- uma araucária: tronco + copa em "taça" com galhos voltados para cima -->
+    <g id="arau">
+      <path d="M-1.6 0 L-1 -92 L1 -92 L1.6 0 Z"/>
+      <path d="M-34 -92 Q-30 -80 -14 -82 Q0 -76 14 -82 Q30 -80 34 -92 Q30 -86 22 -88 Q12 -84 0 -86 Q-12 -84 -22 -88 Q-30 -86 -34 -92 Z"/>
+      <path d="M-28 -102 Q-24 -90 -10 -93 Q0 -88 10 -93 Q24 -90 28 -102 Q22 -97 12 -98 Q0 -95 -12 -98 Q-22 -97 -28 -102 Z"/>
+      <path d="M-19 -110 Q-15 -101 -6 -103 Q0 -100 6 -103 Q15 -101 19 -110 Q12 -106 0 -107 Q-12 -106 -19 -110 Z"/>
+      <path d="M-26 -84 Q-18 -72 -6 -76 Q0 -73 6 -76 Q18 -72 26 -84 Q18 -79 0 -80 Q-18 -79 -26 -84 Z"/>
+      <path d="M-9 -116 Q-4 -109 0 -110 Q4 -109 9 -116 Q4 -113 0 -113 Q-4 -113 -9 -116 Z"/>
+    </g>
+  </defs>
+
+  <!-- vão da janela -->
+  <g clip-path="url(#vao)">
+    <rect x="0" y="0" width="400" height="540" fill="url(#ceu)"/>
+    <circle cx="262" cy="318" r="34" fill="#B9673B" opacity=".9"/>
+    <path d="M0 360 Q80 326 150 344 T300 330 T400 340 V540 H0 Z" fill="#B9A587"/>
+    <path d="M0 392 Q70 368 140 384 T280 372 T400 384 V540 H0 Z" fill="#8C8A6C"/>
+    <g fill="#55604B">
+      <use href="#arau" transform="translate(70 380) scale(.55)"/>
+      <use href="#arau" transform="translate(118 372) scale(.42)"/>
+      <use href="#arau" transform="translate(318 376) scale(.5)"/>
+      <use href="#arau" transform="translate(352 382) scale(.36)"/>
+    </g>
+    <path d="M0 424 Q90 404 190 418 T400 414 V540 H0 Z" fill="#3E4A3C"/>
+    <g fill="#1F2B24">
+      <use href="#arau" transform="translate(160 430) scale(1.05)"/>
+      <use href="#arau" transform="translate(248 432) scale(.78)"/>
+      <use href="#arau" transform="translate(44 438) scale(.7)"/>
+    </g>
+    <path d="M0 450 Q120 438 220 446 T400 444 V540 H0 Z" fill="#1F2B24"/>
+  </g>
+
+  <!-- caixilho -->
+  <g fill="none" stroke="#F3ECE1">
+    <path d="M40 500 V190 A160 160 0 0 1 360 190 V500 Z" stroke-width="18"/>
+    <path d="M200 30 V500" stroke-width="9"/>
+    <path d="M40 286 H360" stroke-width="9"/>
+  </g>
+  <path d="M40 500 V190 A160 160 0 0 1 360 190 V500" fill="none" stroke="#1F2B24" stroke-opacity=".18" stroke-width="1.5" transform="translate(0 0)"/>
+
+  <!-- peitoril + vaso -->
+  <rect x="14" y="496" width="372" height="18" rx="2" fill="#E6DAC8"/>
+  <rect x="14" y="512" width="372" height="6" fill="#CDBDA4"/>
+  <path d="M292 496 C286 474 290 456 304 448 H322 C336 456 340 474 334 496 Z" fill="#A65A32"/>
+  <path d="M300 448 h26 v-6 h-26 Z" fill="#8A4626"/>
+  <path d="M313 442 C311 420 300 404 288 398 M313 442 C316 418 328 404 340 400 M313 442 C313 424 314 410 318 396" stroke="#3E4A3C" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <g fill="#3E4A3C">
+    <ellipse cx="289" cy="398" rx="7" ry="3.4" transform="rotate(-30 289 398)"/>
+    <ellipse cx="339" cy="400" rx="7" ry="3.4" transform="rotate(25 339 400)"/>
+    <ellipse cx="318" cy="395" rx="6" ry="3" transform="rotate(-70 318 395)"/>
+    <ellipse cx="300" cy="414" rx="6" ry="3" transform="rotate(-40 300 414)"/>
+    <ellipse cx="327" cy="414" rx="6" ry="3" transform="rotate(35 327 414)"/>
+  </g>
+</svg>
