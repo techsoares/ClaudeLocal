@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Caderno de marca TOCA</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,350;0,6..72,450;1,6..72,350;1,6..72,450&display=swap" rel="stylesheet">
+<style>
+/* Caderno em páginas A4 fixas: cada página é composta à mão, sem fluxo entre páginas. */
+:root {
+  --verde: #1F2B24; --terra: #A65A32; --terra-txt: #8E4726; --terra-claro: #D99A70;
+  --bege: #D8C8B0; --linho: #F3ECE1; --papel: #EAE0D0; --musgo: #55604B; --preto: #1B1916;
+  --tinta: #2A2622; --tinta-2: #5B544C; --branco: #FBF7F0;
+  --serif: "Newsreader", Georgia, serif; --sans: "Hanken Grotesk", system-ui, sans-serif; --mono: "DM Mono", ui-monospace, monospace;
+}
+@page { size: 210mm 297mm; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #8f8a82; }
+body { font-family: var(--sans); color: var(--tinta); font-size: 9pt; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+img { display: block; max-width: 100%; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; color: var(--verde); letter-spacing: -.01em; }
+em { font-style: italic; }
+@media screen { .pg { margin: 8mm auto; box-shadow: 0 4mm 12mm rgba(0,0,0,.25); } }
+
+.pg { width: 210mm; height: 297mm; position: relative; overflow: hidden; background: var(--linho); padding: 14mm 16mm 13mm; display: flex; flex-direction: column; break-after: page; }
+.pg:last-child { break-after: auto; }
+.pg--verde { background: var(--verde); color: var(--bege); }
+.pg--papel { background: var(--papel); }
+
+.cabeca { display: flex; justify-content: space-between; font: 400 6.4pt/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--musgo); padding-bottom: 3mm; border-bottom: .25mm solid rgba(31,43,36,.3); }
+.pg--verde .cabeca { color: var(--bege); border-bottom-color: rgba(216,200,176,.35); }
+.rodape-pg { margin-top: auto; padding-top: 3mm; display: flex; justify-content: space-between; font: 400 6.2pt/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--musgo); border-top: .25mm solid rgba(31,43,36,.2); }
+.pg--verde .rodape-pg { color: var(--bege); border-top-color: rgba(216,200,176,.3); }
+
+.kicker { font: 600 6.8pt/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--terra-txt); }
+.titulo { margin-top: 9mm; }
+.titulo h2 { font-size: 27pt; line-height: 1.02; margin-top: 3mm; font-weight: 350; }
+.titulo h2 em { color: var(--terra-txt); }
+.lead { margin-top: 4mm; font-size: 10pt; color: var(--tinta-2); max-width: 150mm; }
+.lead b { color: var(--verde); font-weight: 600; }
+
+/* ---------- capa ---------- */
+.capa .logo { width: 104mm; margin-top: 30mm; }
+.capa h1 { color: var(--linho); font-size: 40pt; line-height: 1; font-weight: 350; margin-top: 22mm; }
+.capa h1 em { color: var(--terra-claro); display: block; }
+.capa .sub { margin-top: 6mm; font-size: 10.5pt; max-width: 112mm; }
+.capa .sumario { margin-top: 12mm; list-style: none; display: grid; gap: 2.4mm; width: 92mm; }
+.capa .sumario li { display: grid; grid-template-columns: 9mm 1fr auto; font-size: 9.5pt; color: var(--linho); padding-bottom: 2.4mm; border-bottom: .25mm solid rgba(216,200,176,.25); }
+.capa .sumario span { font: 400 7pt/1.6 var(--mono); color: var(--terra-claro); }
+.capa .sumario i { font: 400 7pt/1.6 var(--mono); font-style: normal; color: var(--bege); }
+.capa .janela { position: absolute; right: -6mm; bottom: -8mm; width: 82mm; }
+
+/* ---------- ideia ---------- */
+.duas { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 9mm; }
+.bloco { border-top: .5mm solid var(--verde); padding-top: 4mm; }
+.bloco h3 { font-size: 14pt; margin-bottom: 2.5mm; }
+.bloco ul { list-style: none; display: grid; gap: 2mm; }
+.bloco li { padding-left: 5mm; position: relative; color: var(--tinta-2); }
+.bloco li::before { content: ""; position: absolute; left: 0; top: 1.6mm; width: 2.6mm; height: 1.6mm; border-radius: 1.3mm 1.3mm 0 0; background: var(--terra); }
+.bloco--muda li::before { height: .4mm; top: 2.2mm; border-radius: 0; background: var(--musgo); }
+.manifesto { margin-top: 12mm; display: grid; grid-template-columns: 54mm 1fr; gap: 10mm; align-items: center; background: var(--verde); color: var(--bege); padding: 10mm; }
+.manifesto img { width: 54mm; border-radius: 50%; }
+.manifesto p.grande { font-family: var(--serif); font-size: 20pt; line-height: 1.12; color: var(--linho); font-weight: 350; }
+.manifesto p.grande em { color: var(--terra-claro); }
+.manifesto p.peq { margin-top: 4mm; font-size: 8.8pt; }
+.perfis { margin-top: 12mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; }
+.perfis div { border-top: .25mm solid var(--verde); padding-top: 3.5mm; }
+.perfis h4 { font-size: 12pt; margin-bottom: 1.5mm; }
+.perfis p { color: var(--tinta-2); font-size: 8.4pt; }
+.perfis b { display: block; margin-top: 2mm; font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--terra-txt); font-size: 9.5pt; }
+
+/* ---------- opções de logo ---------- */
+.opcao { margin-top: 7mm; padding-top: 5mm; border-top: .5mm solid var(--verde); display: grid; grid-template-columns: 1fr 52mm; column-gap: 8mm; }
+.opcao + .opcao { margin-top: 9mm; }
+.opcao__cab { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 4mm; margin-bottom: 4mm; }
+.opcao__cab .letra { font: 400 7pt/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--musgo); }
+.opcao__cab h3 { font-size: 22pt; line-height: 1; }
+.opcao__cab .sub { font-family: var(--serif); font-style: italic; color: var(--terra-txt); font-size: 11pt; }
+.opcao__cab .rec { margin-left: auto; font: 600 6.4pt/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--branco); background: var(--terra); padding: 1.8mm 3mm; border-radius: 3mm; }
+.palcos { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+.palco { height: 52mm; display: grid; place-items: center; padding: 6mm; background: var(--branco); border: .25mm solid rgba(31,43,36,.12); }
+.palco--escuro { background: var(--verde); border-color: var(--verde); }
+.pg--alta .palco { height: 66mm; }
+.pg--alta .palco img { max-height: 50mm; }
+.palco img { max-height: 40mm; width: 100%; object-fit: contain; }
+.usos { grid-column: 1; display: flex; gap: 6mm; align-items: center; margin-top: 3mm; }
+.usos figure { display: flex; align-items: center; gap: 2.5mm; }
+.usos figcaption { font: 400 6pt/1.3 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--musgo); }
+.avatar { width: 14mm; height: 14mm; border-radius: 50%; overflow: hidden; }
+.mini { height: 9mm; background: var(--branco); padding: 1.5mm 3mm; border: .25mm solid rgba(31,43,36,.12); }
+.mini img { height: 100%; width: auto; }
+.lado { grid-column: 2; grid-row: 2 / 4; display: flex; flex-direction: column; gap: 3.5mm; }
+.lado .ideia { font-size: 9pt; color: var(--tinta); }
+.lado h4 { font: 600 6.2pt/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--musgo); margin-bottom: 1.5mm; }
+.lado ul { list-style: none; display: grid; gap: 1.2mm; font-size: 8.2pt; color: var(--tinta-2); }
+.lado li { padding-left: 4mm; position: relative; }
+.lado .pro li::before { content: ""; position: absolute; left: 0; top: 1.5mm; width: 2.2mm; height: 1.4mm; border-radius: 1.1mm 1.1mm 0 0; background: var(--terra); }
+.lado .con li::before { content: ""; position: absolute; left: .2mm; top: 2.1mm; width: 2mm; height: .35mm; background: var(--musgo); }
+
+/* ---------- recomendação ---------- */
+.rec-grande { margin-top: 8mm; background: var(--branco); border: .25mm solid rgba(31,43,36,.12); height: 72mm; display: grid; place-items: center; }
+.rec-grande img { width: 122mm; }
+.rec-faixa { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3mm; margin-top: 3mm; }
+.rec-faixa > div { height: 44mm; display: grid; place-items: center; }
+.rec-faixa .v { background: var(--verde); }
+.rec-faixa .v img { width: 76mm; }
+.rec-faixa .t { background: var(--terra); }
+.rec-faixa .t img { width: 50mm; }
+.simbolos { margin-top: 8mm; display: flex; align-items: flex-end; gap: 7mm; }
+.simbolos img { border-radius: 50%; }
+.simbolos p { font: 400 6.4pt/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--musgo); margin-top: 2mm; text-align: center; }
+.regras { margin-top: 9mm; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4mm 8mm; }
+.regras div { border-top: .25mm solid var(--verde); padding-top: 3mm; }
+.regras h4 { font-size: 11.5pt; margin-bottom: 1mm; }
+.regras p { font-size: 8.4pt; color: var(--tinta-2); }
+
+/* ---------- cores ---------- */
+.paleta { margin-top: 9mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+.paleta div { height: 80mm; background: var(--c); color: var(--t); padding: 5mm; display: flex; flex-direction: column; justify-content: flex-end; border: .25mm solid rgba(31,43,36,.12); }
+.paleta b { font-family: var(--serif); font-weight: 400; font-size: 15pt; line-height: 1.05; }
+.paleta span { font: 400 7.4pt/1.5 var(--mono); margin-top: 1.5mm; }
+.paleta i { font-style: normal; font-size: 7.6pt; opacity: .85; }
+.proporcao { margin-top: 12mm; }
+.proporcao h3 { font-size: 13pt; margin-bottom: 3mm; }
+.barra { display: flex; height: 14mm; border: .25mm solid rgba(31,43,36,.15); }
+.barra div { background: var(--c); }
+.barra-leg { display: flex; margin-top: 2mm; font: 400 6.4pt/1.3 var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--musgo); }
+.barra-leg span { flex: none; }
+.nota { margin-top: 6mm; font-size: 8.2pt; color: var(--tinta-2); max-width: 150mm; }
+.nota b { color: var(--verde); }
+
+/* ---------- tipografia + elementos ---------- */
+.tipo { margin-top: 10mm; display: grid; grid-template-columns: 38mm 1fr; gap: 6mm; padding-top: 4mm; border-top: .25mm solid var(--verde); align-items: baseline; }
+.tipo .nome { font: 400 6.8pt/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--terra-txt); }
+.tipo .nome small { display: block; color: var(--musgo); font-size: 6.2pt; margin-top: 1mm; }
+.tipo .am-serif { font: 350 32pt/1.02 var(--serif); color: var(--verde); }
+.tipo .am-serif em { color: var(--terra-txt); }
+.tipo .am-sans { font-size: 12pt; line-height: 1.45; color: var(--tinta-2); }
+.tipo .am-mono { font: 400 10pt/1.6 var(--mono); color: var(--musgo); letter-spacing: .04em; }
+.elementos { margin-top: 10mm; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+.elem { background: var(--branco); border: .25mm solid rgba(31,43,36,.12); }
+.elem .vis { height: 54mm; display: grid; place-items: center; overflow: hidden; background: var(--papel); }
+.elem .txt { padding: 3mm 3.5mm 3.5mm; }
+.elem h4 { font-size: 10.5pt; line-height: 1.1; margin-bottom: 1mm; }
+.elem p { font-size: 7.4pt; color: var(--tinta-2); line-height: 1.4; }
+.ficha { width: 36mm; background: var(--branco); padding: 2.5mm 3mm; box-shadow: 0 1.5mm 3mm rgba(31,43,36,.25); transform: rotate(-2deg); font-size: 5.6pt; }
+.ficha .c { display: flex; justify-content: space-between; font: 400 4.8pt/1 var(--mono); text-transform: uppercase; color: var(--musgo); padding-bottom: 1.4mm; border-bottom: .2mm dashed var(--bege); }
+.ficha ul { list-style: none; display: grid; gap: .9mm; padding-top: 1.4mm; color: var(--tinta-2); }
+.ficha li { display: flex; gap: 1.4mm; align-items: center; }
+.ficha li::before { content: ""; width: 1.8mm; height: 1.8mm; border: .25mm solid var(--verde); border-radius: .3mm; flex: none; }
+.ficha li.ok::before { background: var(--verde); }
+.ficha b { font: 500 5pt/1 var(--mono); }
+.icones { margin-top: 12mm; display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+.icones div { border-top: .25mm solid var(--verde); padding-top: 3mm; }
+.icones h4 { font-size: 11pt; margin-bottom: 1mm; }
+.icones p { font-size: 8.2pt; color: var(--tinta-2); }
+
+/* ---------- landing ---------- */
+.navegador { margin-top: 6mm; border: .25mm solid rgba(31,43,36,.2); background: var(--branco); box-shadow: 0 3mm 8mm -3mm rgba(31,43,36,.35); }
+.navegador .barra-nav { display: flex; align-items: center; gap: 1.4mm; padding: 2mm 3mm; background: var(--papel); border-bottom: .25mm solid rgba(31,43,36,.12); }
+.navegador .barra-nav i { width: 2mm; height: 2mm; border-radius: 50%; background: var(--bege); }
+.navegador .barra-nav span { margin-left: 3mm; font: 400 6pt/1 var(--mono); color: var(--musgo); background: var(--linho); padding: 1.2mm 3mm; border-radius: 2mm; }
+.lp-baixo { margin-top: 6mm; display: grid; grid-template-columns: 48mm 1fr; gap: 9mm; align-items: start; }
+.celular { border: 1.6mm solid var(--verde); border-radius: 6mm; overflow: hidden; height: 70mm; background: var(--branco); }
+.roteiro h3 { font-size: 14pt; margin-bottom: 3mm; }
+.roteiro ol { list-style: none; counter-reset: r; display: grid; gap: 0; }
+.roteiro li { counter-increment: r; display: grid; grid-template-columns: 7mm 1fr; padding: 1.5mm 0; border-top: .25mm solid rgba(31,43,36,.15); font-size: 8.4pt; color: var(--tinta-2); }
+.roteiro li::before { content: counter(r, decimal-leading-zero); font: 400 6.6pt/1.7 var(--mono); color: var(--terra-txt); }
+.roteiro b { color: var(--verde); font-weight: 600; }
+.roteiro .cta { margin-top: 4mm; background: var(--verde); color: var(--bege); padding: 3.5mm 4mm; font-size: 8.4pt; }
+.roteiro .cta b { color: var(--linho); }
+
+/* ---------- seo ---------- */
+.seo-lista { margin-top: 8mm; display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; }
+.seo-lista div { padding: 3.2mm 0; border-top: .25mm solid rgba(31,43,36,.2); }
+.seo-lista h4 { font-size: 11pt; margin-bottom: .8mm; }
+.seo-lista p { font-size: 8pt; color: var(--tinta-2); }
+.seo-lista code { font-family: var(--mono); font-size: 7.4pt; color: var(--terra-txt); }
+.guias { margin-top: 7mm; display: grid; grid-template-columns: 1fr 40mm; gap: 5mm; }
+.guias figure { border: .25mm solid rgba(31,43,36,.2); background: var(--branco); overflow: hidden; }
+.guias .g1 { height: 74mm; }
+.guias .g2 { height: 74mm; border: 1.4mm solid var(--verde); border-radius: 5mm; }
+.guias .cap { font: 400 6pt/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--musgo); margin-top: 2mm; }
+.fora { margin-top: 7mm; background: var(--verde); color: var(--bege); padding: 5mm 6mm; display: grid; grid-template-columns: 40mm 1fr; gap: 6mm; }
+.fora h3 { color: var(--linho); font-size: 13pt; line-height: 1.1; }
+.fora ol { padding-left: 4mm; display: grid; gap: 1.3mm; font-size: 8.2pt; }
+.fora b { color: var(--linho); font-weight: 600; }
+
+/* ---------- folders ---------- */
+.f-cab { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 7mm; padding-top: 4mm; border-top: .5mm solid var(--verde); }
+.f-cab h3 { font-size: 20pt; line-height: 1; }
+.f-cab .fmt { font: 400 7pt/1.4 var(--mono); color: var(--terra-txt); margin-top: 1.5mm; }
+.f-cab p { font-size: 8.4pt; color: var(--tinta-2); }
+.f-cab .papel { margin-top: 2mm; font-size: 7.8pt; }
+.f-cab .papel b { font: 600 6pt/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--musgo); margin-right: 2mm; }
+.f-img { margin-top: 4mm; }
+.f-img { display: grid; justify-items: center; }
+.f-img img { width: 150mm; }
+.f-img figcaption { width: 150mm; }
+.vitrine { margin-top: 8mm; display: flex; gap: 5mm; align-items: flex-end; justify-content: center; }
+.vitrine figure { display: grid; gap: 2.5mm; }
+.vitrine img { height: 128mm; width: auto; box-shadow: 0 3mm 7mm -3mm rgba(31,43,36,.45); }
+.vitrine figcaption { font: 400 6.2pt/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--musgo); }
+.f-img img { box-shadow: 0 2mm 5mm -2mm rgba(31,43,36,.4); }
+.f-img figcaption { font: 400 6pt/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--musgo); margin-top: 2mm; }
+.vale-exp { margin-top: 6mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+.vale-exp div { background: var(--branco); border: .25mm solid rgba(31,43,36,.12); padding: 3mm 3.5mm; }
+.vale-exp span { font: 400 6.4pt/1 var(--mono); color: var(--terra-txt); }
+.vale-exp h4 { font-size: 11pt; margin: 1.2mm 0 .8mm; }
+.vale-exp p { font-size: 7.6pt; color: var(--tinta-2); }
+.f-linha { margin-top: 7mm; padding-top: 4mm; border-top: .5mm solid var(--verde); display: grid; grid-template-columns: 62mm 1fr; gap: 7mm; align-items: start; }
+.f-linha .txt h3 { font-size: 20pt; line-height: 1; }
+.f-linha .txt .fmt { font: 400 7pt/1.4 var(--mono); color: var(--terra-txt); margin: 1.5mm 0 3mm; }
+.f-linha .txt p { font-size: 8.4pt; color: var(--tinta-2); }
+.f-linha .txt .papel { margin-top: 3mm; padding-top: 2.5mm; border-top: .25mm dashed var(--bege); font-size: 7.8pt; }
+.f-linha .txt .papel b { display: block; font: 600 6pt/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--musgo); margin-bottom: 1mm; }
+.f-linha .imgs { display: flex; gap: 4mm; justify-content: flex-end; }
+.f-linha .imgs figure { display: grid; gap: 2mm; }
+.f-linha .imgs img { height: 100mm; width: auto; box-shadow: 0 2mm 5mm -2mm rgba(31,43,36,.4); }
+.f-linha .imgs figcaption { font: 400 6pt/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--musgo); }
+
+/* ---------- final ---------- */
+.check { margin-top: 8mm; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; }
+.check li { position: relative; padding: 3mm 0 3mm 7mm; border-top: .25mm solid rgba(31,43,36,.2); font-family: var(--serif); font-size: 11pt; color: var(--verde); line-height: 1.25; }
+.check li::before { content: ""; position: absolute; left: 0; top: 3.8mm; width: 3.4mm; height: 3.4mm; border: .35mm solid var(--verde); border-radius: .6mm; }
+.check li small { display: block; font-family: var(--sans); font-size: 7.6pt; color: var(--tinta-2); margin-top: .6mm; }
+.passos { margin-top: 9mm; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+.passos div { border-top: .5mm solid var(--terra); padding-top: 3mm; }
+.passos span { font: 400 6.6pt/1 var(--mono); color: var(--terra-txt); }
+.passos h4 { font-size: 11pt; margin: 1.5mm 0 1mm; line-height: 1.1; }
+.passos p { font-size: 7.6pt; color: var(--tinta-2); }
+.contra { margin: auto -16mm -13mm; background: var(--verde); color: var(--bege); padding: 11mm 16mm 12mm; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 8mm; }
+.contra img { width: 62mm; }
+.contra p { font-family: var(--serif); font-size: 15pt; color: var(--linho); line-height: 1.15; margin-top: 6mm; }
+.contra p em { color: var(--terra-claro); }
+.contra .fone { text-align: right; font: 400 7pt/1.6 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.contra .fone b { display: block; font-family: var(--serif); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 17pt; color: var(--linho); }
+</style>
+</head>
+<body>
+
+<!-- 1 · CAPA -->
+<section class="pg pg--verde capa">
+  <div class="cabeca"><span>TOCA Hospitality</span><span>Caderno de marca · nov 2026</span></div>
+  <img class="logo" src="../logo/opcao-b-arco/toca-arco-horizontal-negativo.svg" alt="TOCA Hospitality">
+  <h1>Uma porta aberta, <em>bem cuidada.</em></h1>
+  <p class="sub">Logo, identidade, landing page e folders da TOCA, gestão de Airbnb em Curitiba. Tudo parte de uma ideia só: a porta em arco, a entrada da toca.</p>
+  <ol class="sumario">
+    <li><span>01</span>A ideia<i>p. 2</i></li>
+    <li><span>02</span>Logo · 4 opções<i>p. 3</i></li>
+    <li><span>03</span>Cores e letras<i>p. 6</i></li>
+    <li><span>04</span>Landing page e SEO<i>p. 8</i></li>
+    <li><span>05</span>Folders · 3 opções<i>p. 10</i></li>
+    <li><span>06</span>Para decidir<i>p. 13</i></li>
+  </ol>
+  <img class="janela" src="../landing/assets/janela.svg" alt="">
+</section>
+
+<!-- 2 · A IDEIA -->
+<section class="pg">
+  <div class="cabeca"><span>01 · A ideia</span><span>2</span></div>
+  <div class="titulo">
+    <p class="kicker">Diagnóstico</p>
+    <h2>O que fica e o que muda <em>na marca de hoje</em></h2>
+  </div>
+  <div class="duas">
+    <div class="bloco">
+      <h3>Fica</h3>
+      <ul>
+        <li>A paleta: verde floresta, terracota e bege. É calma, quente e foge do azul de imobiliária.</li>
+        <li>O arco terracota. É o coração da marca e vira o símbolo principal.</li>
+        <li>A frase “Seu imóvel. Nosso cuidado.” e o tom próximo.</li>
+      </ul>
+    </div>
+    <div class="bloco bloco--muda">
+      <h3>Muda</h3>
+      <ul>
+        <li>O telhado. É o ícone de quase toda imobiliária e construtora, e diz “imóvel”. A TOCA vende cuidado.</li>
+        <li>A janelinha dentro do “A”. Some na foto do WhatsApp e no favicon.</li>
+        <li>O excesso de elementos: telhado, arco, janela, palavra e subtítulo ao mesmo tempo.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="manifesto">
+    <img src="../logo/opcao-b-arco/toca-arco-simbolo.svg" alt="">
+    <div>
+      <p class="grande">Toca é refúgio, lugar quente e protegido. <em>A entrada da toca é uma porta em arco.</em></p>
+      <p class="peq">Essa porta aparece em tudo: no lugar do “O” do logo, na moldura das imagens, nos marcadores de lista e no corte especial do folder 3. Ninguém mais no mercado tem esse desenho.</p>
+    </div>
+  </div>
+  <div class="titulo" style="margin-top:12mm">
+    <p class="kicker">Para quem a TOCA fala</p>
+  </div>
+  <div class="perfis" style="margin-top:5mm">
+    <div><h4>Mora longe do imóvel</h4><p>Comprou em Curitiba para investir, mas não está aqui para abrir a porta.</p><b>“A gente está lá por você.”</b></div>
+    <div><h4>Tem a agenda cheia</h4><p>O imóvel virou um segundo emprego, com mensagem de madrugada e correria nas trocas.</p><b>“Você só acompanha.”</b></div>
+    <div><h4>Quer sair do improviso</h4><p>Está começando, ou já anuncia, mas cada troca de hóspede é uma correria.</p><b>“Vamos organizar isso.”</b></div>
+  </div>
+  <div class="rodape-pg"><span>TOCA Hospitality · Caderno de marca</span><span>Gestão de Airbnb em Curitiba</span></div>
+</section>
+
+<!-- 3 · LOGO A e B -->
+<section class="pg">
+  <div class="cabeca"><span>02 · Logo</span><span>3</span></div>
+  <div class="titulo">
+    <p class="kicker">Quatro caminhos</p>
+    <h2>Opções de logo</h2>
+  </div>
+
+  <article class="opcao">
+    <div class="opcao__cab"><span class="letra">Opção A</span><h3>Porta</h3><span class="sub">evolução da logo atual</span></div>
+    <div class="palcos">
+      <div class="palco"><img src="../logo/opcao-a-porta/toca-porta.svg" alt="Opção A sobre fundo claro"></div>
+      <div class="palco palco--escuro"><img src="../logo/opcao-a-porta/toca-porta-negativo.svg" alt="Opção A sobre fundo verde"></div>
+    </div>
+    <div class="usos">
+      <figure><div class="avatar"><img src="../logo/opcao-a-porta/toca-porta-simbolo.svg" alt=""></div><figcaption>Foto do<br>WhatsApp</figcaption></figure>
+      <figure><div class="mini"><img src="../logo/opcao-a-porta/toca-porta-horizontal.svg" alt=""></div><figcaption>Tamanho<br>pequeno</figcaption></figure>
+    </div>
+    <div class="lado">
+      <p class="ideia">Telhado e arco mais limpos, sem a janelinha do “A”. Caixa-alta clássica.</p>
+      <div class="pro"><h4>A favor</h4><ul><li>Continuidade com o que já existe</li><li>Leitura imediata de “casa”</li></ul></div>
+      <div class="con"><h4>Atenção</h4><ul><li>O telhado é o ícone padrão de imobiliária</li><li>Diz “imóvel”, e o negócio é cuidado</li></ul></div>
+    </div>
+  </article>
+
+  <article class="opcao">
+    <div class="opcao__cab"><span class="letra">Opção B</span><h3>Arco</h3><span class="sub">o “O” vira a porta da toca</span><span class="rec">Recomendada</span></div>
+    <div class="palcos">
+      <div class="palco"><img src="../logo/opcao-b-arco/toca-arco-horizontal.svg" alt="Opção B sobre fundo claro"></div>
+      <div class="palco palco--escuro"><img src="../logo/opcao-b-arco/toca-arco-horizontal-negativo.svg" alt="Opção B sobre fundo verde"></div>
+    </div>
+    <div class="usos">
+      <figure><div class="avatar"><img src="../logo/opcao-b-arco/toca-arco-simbolo.svg" alt=""></div><figcaption>Foto do<br>WhatsApp</figcaption></figure>
+      <figure><div class="mini"><img src="../logo/opcao-b-arco/toca-arco-horizontal.svg" alt=""></div><figcaption>Tamanho<br>pequeno</figcaption></figure>
+    </div>
+    <div class="lado">
+      <p class="ideia">Um arco cheio em terracota no lugar do “O”, numa Bodoni de alto contraste. O símbolo é só a porta.</p>
+      <div class="pro"><h4>A favor</h4><ul><li>Própria: ninguém mais tem</li><li>Ar de hotelaria boutique</li><li>O símbolo funciona sozinho</li></ul></div>
+      <div class="con"><h4>Atenção</h4><ul><li>Traços finos: abaixo de 25 mm, use só o símbolo</li></ul></div>
+    </div>
+  </article>
+  <div class="rodape-pg"><span>TOCA Hospitality · Caderno de marca</span><span>Arquivos em logo/opcao-a-porta e logo/opcao-b-arco</span></div>
+</section>
+
+<!-- 4 · LOGO C e D -->
+<section class="pg pg--alta">
+  <div class="cabeca"><span>02 · Logo</span><span>4</span></div>
+
+  <article class="opcao" style="margin-top:9mm">
+    <div class="opcao__cab"><span class="letra">Opção C</span><h3>Chaveiro</h3><span class="sub">o chaveiro de quarto de hotel</span></div>
+    <div class="palcos">
+      <div class="palco"><img src="../logo/opcao-c-chaveiro/toca-chaveiro.svg" alt="Opção C, chaveiro verde"></div>
+      <div class="palco palco--escuro"><img src="../logo/opcao-c-chaveiro/toca-chaveiro-terracota.svg" alt="Opção C, chaveiro terracota"></div>
+    </div>
+    <div class="usos">
+      <figure><div class="avatar"><img src="../logo/opcao-c-chaveiro/toca-chaveiro-simbolo.svg" alt=""></div><figcaption>Foto do<br>WhatsApp</figcaption></figure>
+      <figure><div class="mini"><img src="../logo/opcao-c-chaveiro/toca-chaveiro-assinatura.svg" alt=""></div><figcaption>Tamanho<br>pequeno</figcaption></figure>
+    </div>
+    <div class="lado">
+      <p class="ideia">A marca é o objeto que o hóspede recebe. “Nº 41” é o DDD de Curitiba.</p>
+      <div class="pro"><h4>A favor</h4><ul><li>Memorável, conta a história da hospitalidade</li><li>Vira chaveiro de verdade</li></ul></div>
+      <div class="con"><h4>Atenção</h4><ul><li>Formato largo, difícil em espaços pequenos</li><li>Melhor como elemento de apoio</li></ul></div>
+    </div>
+  </article>
+
+  <article class="opcao">
+    <div class="opcao__cab"><span class="letra">Opção D</span><h3>toca.</h3><span class="sub">o ponto final é uma portinha</span></div>
+    <div class="palcos">
+      <div class="palco"><img src="../logo/opcao-d-ponto/toca-ponto.svg" alt="Opção D sobre fundo claro"></div>
+      <div class="palco palco--escuro"><img src="../logo/opcao-d-ponto/toca-ponto-negativo.svg" alt="Opção D sobre fundo verde"></div>
+    </div>
+    <div class="usos">
+      <figure><div class="avatar"><img src="../logo/opcao-d-ponto/toca-ponto-simbolo.svg" alt=""></div><figcaption>Foto do<br>WhatsApp</figcaption></figure>
+      <figure><div class="mini"><img src="../logo/opcao-d-ponto/toca-ponto.svg" alt=""></div><figcaption>Tamanho<br>pequeno</figcaption></figure>
+    </div>
+    <div class="lado">
+      <p class="ideia">Minúsculas calorosas. A mais próxima: passa “pessoa”, não “empresa”.</p>
+      <div class="pro"><h4>A favor</h4><ul><li>Simpática, ótima para Instagram</li><li>Legível em qualquer tamanho</li></ul></div>
+      <div class="con"><h4>Atenção</h4><ul><li>Menos “premium” para cobrar como gestão boutique</li></ul></div>
+    </div>
+  </article>
+  <div class="rodape-pg"><span>TOCA Hospitality · Caderno de marca</span><span>Arquivos em logo/opcao-c-chaveiro e logo/opcao-d-ponto</span></div>
+</section>
+
+<!-- 5 · RECOMENDAÇÃO -->
+<section class="pg">
+  <div class="cabeca"><span>02 · Logo</span><span>5</span></div>
+  <div class="titulo">
+    <p class="kicker">Recomendação</p>
+    <h2>Opção B como marca principal, <em>o chaveiro como apoio</em></h2>
+    <p class="lead">A B mantém a elegância e o arco terracota da marca atual, tira o telhado genérico e ganha um símbolo que funciona sozinho. O chaveiro (C) entra em brindes, no kit do hóspede e nos impressos. <b>O site e os folders já estão com a B.</b></p>
+  </div>
+  <div class="rec-grande"><img src="../logo/opcao-b-arco/toca-arco-horizontal.svg" alt="Logo TOCA, opção B"></div>
+  <div class="rec-faixa">
+    <div class="v"><img src="../logo/opcao-b-arco/toca-arco-horizontal-negativo.svg" alt="Logo sobre verde"></div>
+    <div class="t"><img src="../logo/opcao-b-arco/toca-arco-horizontal-linho.svg" alt="Logo sobre terracota"></div>
+  </div>
+  <div class="simbolos">
+    <div><img src="../logo/opcao-b-arco/toca-arco-simbolo.svg" alt="" style="width:30mm"><p>Avatar</p></div>
+    <div><img src="../logo/opcao-b-arco/toca-arco-simbolo.svg" alt="" style="width:16mm"><p>Ícone</p></div>
+    <div><img src="../logo/opcao-b-arco/toca-arco-simbolo.svg" alt="" style="width:8mm"><p>Favicon</p></div>
+  </div>
+  <div class="regras">
+    <div><h4>Área de proteção</h4><p>Deixe livre, em volta da marca, um espaço igual à altura do arco.</p></div>
+    <div><h4>Tamanho mínimo</h4><p>Marca completa com 25 mm (ou 100 px) de largura. Abaixo disso, use só o símbolo.</p></div>
+    <div><h4>Fundos</h4><p>Linho, bege, verde floresta e terracota. No terracota, use a versão toda clara.</p></div>
+    <div><h4>Não fazer</h4><p>Não distorcer, não aplicar sobre foto movimentada e não trocar a cor do arco.</p></div>
+  </div>
+  <div class="rodape-pg"><span>TOCA Hospitality · Caderno de marca</span><span>SVG vetorial, pronto para gráfica</span></div>
+</section>
+
+<!-- 6 · CORES -->
+<section class="pg">
+  <div class="cabeca"><span>03 · Cores e letras</span><span>6</span></div>
+  <div class="titulo">
+    <p class="kicker">Paleta</p>
+    <h2>Seis cores, <em>tiradas da natureza e da casa</em></h2>
+  </div>
+  <div class="paleta">
+    <div style="--c:#1F2B24;--t:#F3ECE1"><b>Verde floresta</b><span>#1F2B24</span><i>Texto principal, fundos de destaque, botões</i></div>
+    <div style="--c:#A65A32;--t:#F3ECE1"><b>Terracota</b><span>#A65A32</span><i>O arco do logo e os destaques</i></div>
+    <div style="--c:#D8C8B0;--t:#1F2B24"><b>Bege</b><span>#D8C8B0</span><i>Linhas e textos de apoio</i></div>
+    <div style="--c:#F3ECE1;--t:#1F2B24"><b>Linho</b><span>#F3ECE1</span><i>Fundo principal</i></div>
+    <div style="--c:#55604B;--t:#F3ECE1"><b>Musgo</b><span>#55604B</span><i>Rótulos e ilustração</i></div>
+    <div style="--c:#1B1916;--t:#D8C8B0"><b>Preto suave</b><span>#1B1916</span><i>Rodapé e logo em preto</i></div>
+  </div>
+  <div class="proporcao">
+    <h3>Proporção de uso</h3>
+    <div class="barra">
+      <div style="--c:#F3ECE1;width:50%"></div><div style="--c:#1F2B24;width:24%"></div><div style="--c:#D8C8B0;width:12%"></div><div style="--c:#A65A32;width:8%"></div><div style="--c:#55604B;width:4%"></div><div style="--c:#1B1916;width:2%"></div>
+    </div>
+    <div class="barra-leg"><span style="width:50%">Linho · 50%</span><span style="width:24%">Verde · 24%</span><span style="width:12%">Bege · 12%</span><span style="width:14%">Terracota · 8%</span></div>
+  </div>
+  <p class="nota">A terracota é a cor do arco e dos pontos de atenção: use pouco, para ela continuar chamando o olho. Para texto em terracota sobre fundo claro, use o tom <b>#8E4726</b>, que tem contraste suficiente para leitura. Na gráfica, peça prova de cor antes da tiragem.</p>
+  <div class="rodape-pg"><span>TOCA Hospitality · Caderno de marca</span><span>Cores em HEX para tela; prova de cor para impressão</span></div>
+</section>
+
+<!-- 7 · TIPOGRAFIA E ELEMENTOS -->
+<section class="pg">
+  <div class="cabeca"><span>03 · Cores e letras</span><span>7</span></div>
+  <div class="titulo">
+    <p class="kicker">Tipografia</p>
+    <h2>Três letras, <em>cada uma com a sua função</em></h2>
+  </div>
+  <div class="tipo"><p class="nome">Newsreader<small>títulos · Google Fonts</small></p><p class="am-serif">Seu imóvel trabalhando. <em>A TOCA cuidando.</em></p></div>
+  <div class="tipo"><p class="nome">Hanken Grotesk<small>textos e botões</small></p><p class="am-sans">A gente cuida da rotina do seu imóvel em Curitiba, do primeiro “olá” ao hóspede até a cama arrumada para o próximo.</p></div>
+  <div class="tipo"><p class="nome">DM Mono<small>fichas, horários, Nº</small></p><p class="am-mono">11:00 CHECK-OUT · 15:00 CHECK-IN · Nº 41</p></div>
+
+  <div class="titulo" style="margin-top:12mm"><p class="kicker">Elementos que só a TOCA tem</p></div>
+  <div class="elementos" style="margin-top:5mm">
+    <div class="elem">
+      <div class="vis"><div class="ficha"><p class="c"><span>Dia de troca</span><span>704</span></p><ul><li class="ok"><b>11:00</b> Check-out</li><li class="ok"><b>13:40</b> Limpeza</li><li class="ok"><b>14:20</b> Enxoval</li><li><b>15:00</b> Check-in</li></ul></div></div>
+      <div class="txt"><h4>A ficha do dia de troca</h4><p>Horários e checkboxes que mostram o serviço funcionando.</p></div>
+    </div>
+    <div class="elem">
+      <div class="vis"><img src="../logo/opcao-c-chaveiro/toca-chaveiro-terracota.svg" alt="" style="width:40mm"></div>
+      <div class="txt"><h4>O chaveiro Nº 41</h4><p>Do quarto de hotel antigo, com o DDD de Curitiba.</p></div>
+    </div>
+    <div class="elem">
+      <div class="vis" style="place-items:end center"><img src="../landing/assets/janela.svg" alt="" style="width:30mm"></div>
+      <div class="txt"><h4>A janela com araucárias</h4><p>Ilustração própria até chegarem as fotos reais.</p></div>
+    </div>
+    <div class="elem">
+      <div class="vis"><svg viewBox="0 0 120 120" style="width:28mm;transform:rotate(-12deg)" aria-hidden="true"><defs><path id="circ" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/></defs><g fill="none" stroke="#A65A32"><circle cx="60" cy="60" r="56" stroke-width="2.4"/><circle cx="60" cy="60" r="33" stroke-width="1.2"/></g><text font-family="DM Mono, monospace" font-size="9.4" letter-spacing="2.6" fill="#A65A32"><textPath href="#circ">TOCA HOSPITALITY · CUIDADO DE PERTO ·</textPath></text><path d="M48 78 V56 A12 12 0 0 1 72 56 V78 Z" fill="#A65A32"/><path d="M42 78 H78" stroke="#A65A32" stroke-width="1.6"/></svg></div>
+      <div class="txt"><h4>O carimbo</h4><p>Na ficha impressa e aplicado à mão em envelopes.</p></div>
+    </div>
+  </div>
+  <div class="icones">
+    <div><h4>Fotografia, quando houver</h4><p>Fotos reais dos imóveis atendidos, com luz natural e detalhes: cama feita, toalha dobrada, chave na mesa. Nunca banco de imagem com pessoas sorrindo para a câmera.</p></div>
+    <div><h4>Tom de voz</h4><p>Próximo e direto, em primeira pessoa do plural (“a gente cuida”). Sem jargão de hotelaria e sem prometer número que não dá para provar.</p></div>
+  </div>
+  <div class="rodape-pg"><span>TOCA Hospitality · Caderno de marca</span><span>Todas as fontes são gratuitas</span></div>
+</section>
+
+<!-- 8 · LANDING PAGE -->
+<section class="pg">
+  <div class="cabeca"><span>04 · Landing page e SEO</span><span>8</span></div>
+  <div class="titulo">
+    <p class="kicker">Landing page</p>
+    <h2>Feita para quem busca <em>“gestão de Airbnb em Curitiba”</em></h2>
+    <p class="lead">Uma página com um objetivo: levar o proprietário para o WhatsApp. O botão principal oferece um <b>diagnóstico gratuito</b>, e cada botão abre a conversa com uma mensagem diferente, para saber de onde veio cada contato.</p>
+  </div>
+  <figure class="navegador">
+    <div class="barra-nav"><i></i><i></i><i></i><span>tocahospitality.com.br</span></div>
+    <img src="../previews/lp-desktop-dobra.png" alt="Landing page no computador">
+  </figure>
+  <div class="lp-baixo">
+    <div class="celular"><img src="../previews/lp-mobile-dobra.png" alt="Landing page no celular"></div>
+    <div class="roteiro">
+      <h3>Roteiro da página</h3>
+      <ol>
+        <li><span><b>Hero</b>: “Gestão de Airbnb em Curitiba” e o diagnóstico gratuito</span></li>
+        <li><span><b>Serviços</b>: as 6 frentes da rotina</span></li>
+        <li><span><b>Dia de troca</b>: a rotina das 11h às 15h, sem jargão</span></li>
+        <li><span><b>Você acompanha, a TOCA cuida</b>: quem faz o quê</span></li>
+        <li><span><b>Formatos</b>: operação completa ou sob medida</span></li>
+        <li><span><b>Para quem é</b>: três perfis de proprietário</span></li>
+        <li><span><b>Onde atendemos</b>: Curitiba e os dois guias</span></li>
+        <li><span><b>Perguntas frequentes</b> sobre gestão de Airbnb</span></li>
+      </ol>
+          </div>
+  </div>
+  <div class="rodape-pg"><span>TOCA Hospitality · Caderno de marca</span><span>Testada no computador e no celular</span></div>
+</section>
+
+<!-- 9 · SEO -->
+<section class="pg">
+  <div class="cabeca"><span>04 · Landing page e SEO</span><span>9</span></div>
+  <div class="titulo">
+    <p class="kicker">Google e buscas com IA</p>
+    <h2>Para aparecer no Google, <em>no ChatGPT e no Perplexity</em></h2>
+    <p class="lead">O site diz com clareza, para pessoas e para robôs, quem é a TOCA, o que faz e onde atua.</p>
+  </div>
+  <div class="seo-lista">
+    <div><h4>Textos com a busca certa</h4><p>Título, H1 e seções com “gestão de Airbnb em Curitiba” e variações, sem forçar.</p></div>
+    <div><h4>Dados estruturados</h4><p>Empresa, cidade, telefone, serviços e perguntas frequentes no formato que o Google e as IAs leem (<code>JSON-LD</code>).</p></div>
+    <div><h4>Resumo para as IAs</h4><p>O arquivo <code>llms.txt</code> resume a TOCA em texto puro para o ChatGPT, Claude, Perplexity e Gemini citarem certo.</p></div>
+    <div><h4>Porta aberta para os robôs</h4><p><code>robots.txt</code> libera os robôs de busca e de IA, e <code>sitemap.xml</code> lista as páginas.</p></div>
+  </div>
+  <div class="guias">
+    <div><figure class="g1"><img src="img/guia-coan.png" alt="Guia de coanfitrião de Airbnb em Curitiba"></figure><p class="cap">Guia · coanfitrião de Airbnb em Curitiba</p></div>
+    <div><figure class="g2"><img src="img/guia-prop.png" alt="Checklist para preparar o imóvel"></figure><p class="cap">Checklist · preparar o imóvel</p></div>
+  </div>
+  <div class="fora">
+    <h3>Depois de publicar, fora do site</h3>
+    <ol>
+      <li><b>Perfil da Empresa no Google</b>, com área atendida em Curitiba. É o que mais pesa na busca local.</li>
+      <li><b>Google Search Console e Bing Webmaster</b>, enviando o sitemap. O ChatGPT busca no índice do Bing.</li>
+      <li><b>Mesmo nome, cidade e telefone</b> no Airbnb, Instagram e WhatsApp Business.</li>
+      <li><b>Um guia novo por mês</b>, por exemplo “melhores bairros para Airbnb em Curitiba”.</li>
+    </ol>
+  </div>
+  <div class="rodape-pg"><span>TOCA Hospitality · Caderno de marca</span><span>SEO local e para buscas com IA</span></div>
+</section>
+
+<!-- 10 · FOLDER 1 -->
+<section class="pg">
+  <div class="cabeca"><span>05 · Folders</span><span>10</span></div>
+  <div class="titulo">
+    <p class="kicker">Folders</p>
+    <h2>Três formatos, <em>a mesma capa que chama</em></h2>
+  </div>
+  <div class="vale-exp">
+    <div><span>1 · Filtra</span><h4>“Tem Airbnb em Curitiba?”</h4><p>Quem tem se reconhece em segundos. Quem não tem passa adiante.</p></div>
+    <div><span>2 · Responde</span><h4>“A TOCA cuida.”</h4><p>A promessa inteira em três palavras.</p></div>
+    <div><span>3 · Oferece</span><h4>Vale diagnóstico gratuito</h4><p>Cupom destacável com QR que abre o WhatsApp já com a mensagem pronta.</p></div>
+  </div>
+  <div class="vitrine">
+    <figure><img src="img/capa-f1.png" alt="Capa do folder 1"><figcaption>1 · Editorial A4</figcaption></figure>
+    <figure><img src="../previews/folder-2-ficha-a5-1.png" alt="Frente do folder 2"><figcaption>2 · Ficha A5</figcaption></figure>
+    <figure><img src="../previews/folder-3-arco-dl-1.png" alt="Frente do folder 3"><figcaption>3 · Arco DL</figcaption></figure>
+  </div>
+  <p class="nota" style="margin-top:6mm">O QR de todos os folders abre o WhatsApp com a mensagem <b>“Peguei o folder da TOCA e quero o diagnóstico gratuito do meu imóvel”</b>. Assim dá para saber quantos contatos vieram do papel.</p>
+  <div class="rodape-pg"><span>TOCA Hospitality · Caderno de marca</span><span>As três capas</span></div>
+</section>
+
+<!-- 11 · FOLDER 1 -->
+<section class="pg">
+  <div class="cabeca"><span>05 · Folders</span><span>11</span></div>
+  <div class="f-cab" style="margin-top:6mm">
+    <div><h3>1 · Editorial</h3><p class="fmt">A4 tri-dobra · 297 × 210 mm aberto</p></div>
+    <div><p>O material completo, para reunião com proprietário, imobiliária parceira ou envio em PDF. Por dentro, os 6 serviços, os formatos e a linha do tempo do dia de troca.</p><p class="papel"><b>Papel</b>Couché fosco 150 g ou papel texturizado 120 g</p></div>
+  </div>
+  <figure class="f-img"><img src="../previews/folder-1-editorial-a4-tridobra-1.png" alt="Folder 1, lado externo"><figcaption>Lado externo: aba, contracapa e capa</figcaption></figure>
+  <figure class="f-img"><img src="../previews/folder-1-editorial-a4-tridobra-2.png" alt="Folder 1, lado interno"><figcaption>Lado interno</figcaption></figure>
+  <div class="rodape-pg"><span>TOCA Hospitality · Caderno de marca</span><span>Linhas azuis = dobra · magenta = corte (não imprimem)</span></div>
+</section>
+
+<!-- 12 · FOLDERS 2 E 3 -->
+<section class="pg">
+  <div class="cabeca"><span>05 · Folders</span><span>12</span></div>
+  <div class="f-linha" style="margin-top:9mm">
+    <div class="txt">
+      <h3>2 · Ficha de cuidado</h3>
+      <p class="fmt">A5 frente e verso · 148 × 210 mm</p>
+      <p>Imita a ficha de governança de hotel: checklist marcado, “quem cuida: TOCA”, carimbo e picote. Direto e barato, para condomínios, portarias e imobiliárias.</p>
+      <p class="papel"><b>Papel</b>Offset ou reciclato 180 g</p>
+    </div>
+    <div class="imgs">
+      <figure><img src="../previews/folder-2-ficha-a5-1.png" alt="Folder 2, frente"><figcaption>Frente</figcaption></figure>
+      <figure><img src="../previews/folder-2-ficha-a5-2.png" alt="Folder 2, verso"><figcaption>Verso</figcaption></figure>
+    </div>
+  </div>
+  <div class="f-linha">
+    <div class="txt">
+      <h3>3 · Arco</h3>
+      <p class="fmt">DL com faca especial · 99 × 210 mm</p>
+      <p>O topo é cortado em arco: a porta da toca em papel. Para entregar junto com a chave, deixar no imóvel ou mandar com um mimo para potenciais clientes.</p>
+      <p class="papel"><b>Papel</b>Cartão 300 g fosco, laminação soft touch. O PDF inclui a página da faca para a gráfica.</p>
+    </div>
+    <div class="imgs">
+      <figure><img src="../previews/folder-3-arco-dl-1.png" alt="Folder 3, frente"><figcaption>Frente</figcaption></figure>
+      <figure><img src="../previews/folder-3-arco-dl-2.png" alt="Folder 3, verso"><figcaption>Verso</figcaption></figure>
+    </div>
+  </div>
+  <div class="rodape-pg"><span>TOCA Hospitality · Caderno de marca</span><span>PDFs com sangria de 3 mm e fontes embutidas</span></div>
+</section>
+
+<!-- 13 · PARA DECIDIR -->
+<section class="pg">
+  <div class="cabeca"><span>06 · Para decidir</span><span>13</span></div>
+  <div class="titulo">
+    <p class="kicker">Para decidir</p>
+    <h2>O que falta <em>a dona da TOCA confirmar</em></h2>
+  </div>
+  <ul class="check">
+    <li>Qual logo segue<small>A, B, C ou D. A recomendação é a B.</small></li>
+    <li>O diagnóstico gratuito<small>É o CTA do site e dos folders. O que entra nele?</small></li>
+    <li>Coanfitriã no Airbnb e Booking<small>O site diz que a TOCA trabalha nos dois.</small></li>
+    <li>Bairros atendidos<small>O site cita Centro, Batel, Água Verde, Bigorrilho e outros.</small></li>
+    <li>Instagram e domínio<small>@tocahospitality e tocahospitality.com.br estão livres?</small></li>
+    <li>Fotos e depoimentos reais<small>Fotos de 1 ou 2 imóveis. Depoimentos só reais e autorizados.</small></li>
+  </ul>
+  <div class="titulo" style="margin-top:12mm"><p class="kicker">Próximos passos</p></div>
+  <div class="passos" style="margin-top:5mm">
+    <div><span>1</span><h4>Publicar o site</h4><p>Vercel, apontando a pasta toca-hospitality/landing.</p></div>
+    <div><span>2</span><h4>Perfil no Google</h4><p>Perfil da Empresa e Search Console com o sitemap.</p></div>
+    <div><span>3</span><h4>WhatsApp Business</h4><p>Símbolo da B como foto, catálogo e respostas rápidas.</p></div>
+    <div><span>4</span><h4>Imprimir um folder</h4><p>Começar pela ficha A5, a mais barata, e medir os QR.</p></div>
+  </div>
+  <div class="contra">
+    <div>
+      <img src="../logo/opcao-b-arco/toca-arco-horizontal-negativo.svg" alt="TOCA Hospitality">
+      <p>Seu imóvel trabalhando. <em>A TOCA cuidando.</em></p>
+    </div>
+    <p class="fone">WhatsApp<b>(41) 99896-0730</b>Curitiba · PR</p>
+  </div>
+</section>
+
+</body>
+</html>
