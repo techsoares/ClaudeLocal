@@ -7,7 +7,7 @@ Marca, landing page e folders da TOCA, empresa de gestão operacional de imóvei
 | `SPEC.md` | Estratégia, decisões de design, regras de uso e pendências |
 | `apresentacao.html` | Caderno de marca: as 4 logos, cores, site e folders numa página só (abra no navegador) |
 | `logo/` | 4 opções de logo em SVG (A Porta, **B Arco, a recomendada**, C Chaveiro, D toca.) |
-| `landing/` | Site estático pronto para a Vercel (Root Directory = `toca-hospitality/landing`) |
+| `landing/` | Site estático pronto para a Vercel (Root Directory = `toca-hospitality/landing`), com SEO local e para buscas com IA (`llms.txt`, `robots.txt`, `sitemap.xml`, JSON-LD) e 2 guias |
 | `folders/` | 3 folders em HTML editável e `pdf/` prontos para gráfica |
 | `previews/` | Prints do site e dos folders |
 

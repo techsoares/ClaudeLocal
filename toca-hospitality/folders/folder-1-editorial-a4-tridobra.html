@@ -40,10 +40,13 @@
   .contra .assina img { width: 22mm; }
   .contra .assina span { font-size: 6.2pt; color: var(--tinta-2); letter-spacing: .08em; }
 
-  .capa { background: var(--verde); color: var(--bege); align-items: center; text-align: center; padding-top: 22mm; }
-  .capa .logo { width: 58mm; }
-  .capa .tag { font-family: var(--serif); font-style: italic; font-size: 13pt; color: var(--linho); margin-top: 6mm; }
-  .capa .arco { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 74mm; height: 104mm; border-radius: 37mm 37mm 0 0; overflow: hidden; background: var(--terra); }
+  .capa { background: var(--verde); color: var(--bege); align-items: center; text-align: center; padding-top: 17mm; }
+  .capa .gancho { font-family: var(--serif); font-weight: 350; color: var(--linho); font-size: 24pt; line-height: 1; margin-top: 9mm; }
+  .capa .gancho em { color: var(--terra-claro); display: block; }
+  .capa .vale { margin-top: 7mm; width: 78mm; position: relative; z-index: 2; }
+  .capa .logo { width: 42mm; }
+  .capa .tag { font-size: 7.6pt; line-height: 1.45; color: var(--bege); margin-top: 3.5mm; max-width: 66mm; }
+  .capa .arco { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 64mm; height: 74mm; border-radius: 32mm 32mm 0 0; overflow: hidden; background: var(--terra); }
   .capa .arco img { width: 100%; position: absolute; bottom: -10mm; left: 0; transform: scale(1.18); transform-origin: bottom center; }
   .capa .canto { position: absolute; top: 9mm; right: 14mm; font-size: 6pt; letter-spacing: .2em; text-transform: uppercase; color: var(--bege); opacity: .7; }
 
@@ -144,9 +147,18 @@
   </div>
 
   <div class="painel capa">
-    <span class="canto">Imóveis de temporada</span>
+    <span class="canto">Gestão de Airbnb · Curitiba</span>
     <img class="logo" src="assets/logo-negativo.svg" alt="TOCA Hospitality">
-    <p class="tag">Seu imóvel. Nosso cuidado.</p>
+    <h1 class="gancho">Tem Airbnb em Curitiba? <em>A TOCA cuida.</em></h1>
+    <p class="tag">Hóspedes, check-in, limpeza e preparação entre estadias. Você só acompanha.</p>
+    <div class="vale">
+      <div class="vale__txt">
+        <p class="vale__tag">Vale · 1 diagnóstico</p>
+        <p class="vale__tit">Diagnóstico <em>gratuito</em> do seu Airbnb</p>
+        <p class="vale__sub">Aponte a câmera e fale com a TOCA no WhatsApp. Sem compromisso.</p>
+      </div>
+      <img class="vale__qr" src="assets/qr-whatsapp-verde.svg" alt="QR code para pedir o diagnóstico gratuito no WhatsApp">
+    </div>
     <div class="arco"><img src="assets/janela.svg" alt=""></div>
   </div>
 

@@ -3,18 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TOCA Hospitality · Gestão operacional de imóveis por temporada</title>
-  <meta name="description" content="A TOCA cuida da rotina do seu imóvel de temporada: atendimento ao hóspede, check-in e check-out, limpeza e preparação entre estadias. Você acompanha. A TOCA cuida.">
+  <title>Gestão de Airbnb em Curitiba | TOCA Hospitality</title>
+  <meta name="description" content="Gestão de Airbnb em Curitiba: atendimento ao hóspede, check-in e check-out, limpeza e preparação entre estadias. Peça um diagnóstico gratuito do seu imóvel.">
   <meta name="theme-color" content="#1F2B24">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="geo.region" content="BR-PR">
+  <meta name="geo.placename" content="Curitiba">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="canonical" href="https://tocahospitality.com.br/">
+  <link rel="alternate" type="text/plain" href="https://tocahospitality.com.br/llms.txt" title="Resumo para assistentes de IA">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:title" content="TOCA Hospitality · Seu imóvel trabalhando. A TOCA cuidando.">
-  <meta property="og:description" content="Atendimento ao hóspede, check-in e check-out, limpeza e preparação entre estadias. Você acompanha. A TOCA cuida.">
+  <meta property="og:site_name" content="TOCA Hospitality">
+  <meta property="og:url" content="https://tocahospitality.com.br/">
+  <meta property="og:title" content="Gestão de Airbnb em Curitiba | TOCA Hospitality">
+  <meta property="og:description" content="Seu imóvel trabalhando. A TOCA cuidando. Atendimento ao hóspede, check-in, limpeza e preparação entre estadias.">
   <meta property="og:image" content="https://tocahospitality.com.br/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,13 +33,193 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "TOCA Hospitality",
-    "description": "Gestão operacional de imóveis por temporada: atendimento ao hóspede, check-in e check-out, limpeza e preparação entre estadias.",
-    "telephone": "+55 41 99896-0730",
-    "url": "https://tocahospitality.com.br/",
-    "areaServed": "Curitiba e região",
-    "slogan": "Seu imóvel trabalhando. A TOCA cuidando."
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://tocahospitality.com.br/#empresa",
+        "name": "TOCA Hospitality",
+        "alternateName": "TOCA",
+        "description": "Empresa de gestão de Airbnb e imóveis por temporada em Curitiba. Cuida do atendimento ao hóspede, check-in e check-out, limpeza e preparação entre estadias para proprietários.",
+        "slogan": "Seu imóvel trabalhando. A TOCA cuidando.",
+        "url": "https://tocahospitality.com.br/",
+        "logo": "https://tocahospitality.com.br/assets/logo-512.png",
+        "image": "https://tocahospitality.com.br/assets/og.png",
+        "telephone": "+55-41-99896-0730",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Curitiba",
+          "addressRegion": "PR",
+          "addressCountry": "BR"
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Curitiba",
+          "sameAs": "https://pt.wikipedia.org/wiki/Curitiba"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+55-41-99896-0730",
+          "contactType": "customer service",
+          "areaServed": "BR",
+          "availableLanguage": "Portuguese"
+        },
+        "knowsAbout": [
+          "gestão de Airbnb",
+          "coanfitrião de Airbnb",
+          "locação por temporada",
+          "check-in e check-out",
+          "limpeza entre estadias",
+          "atendimento ao hóspede"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Serviços de gestão de Airbnb em Curitiba",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Atendimento ao hóspede",
+                "areaServed": "Curitiba"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Check-in e check-out",
+                "areaServed": "Curitiba"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Organização da limpeza",
+                "areaServed": "Curitiba"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Preparação entre estadias",
+                "areaServed": "Curitiba"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Suporte durante a hospedagem",
+                "areaServed": "Curitiba"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Acompanhamento da operação",
+                "areaServed": "Curitiba"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://tocahospitality.com.br/#site",
+        "url": "https://tocahospitality.com.br/",
+        "name": "TOCA Hospitality",
+        "inLanguage": "pt-BR",
+        "publisher": {
+          "@id": "https://tocahospitality.com.br/#empresa"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://tocahospitality.com.br/#pagina",
+        "url": "https://tocahospitality.com.br/",
+        "name": "Gestão de Airbnb em Curitiba | TOCA Hospitality",
+        "isPartOf": {
+          "@id": "https://tocahospitality.com.br/#site"
+        },
+        "about": {
+          "@id": "https://tocahospitality.com.br/#empresa"
+        },
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://tocahospitality.com.br/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "O que faz uma empresa de gestão de Airbnb?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cuida da operação do dia a dia do imóvel de temporada. Na TOCA isso inclui conversar com os hóspedes, organizar check-in e check-out, coordenar a limpeza, preparar o imóvel entre uma estadia e outra e resolver imprevistos durante a hospedagem. Você continua dono do anúncio e acompanha tudo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "A TOCA atende quais bairros de Curitiba?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Atendemos imóveis de temporada em Curitiba. Mande o endereço pelo WhatsApp e a gente confirma se o seu bairro está na nossa rota."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "A TOCA trabalha como coanfitriã no Airbnb?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. No formato mais comum, você adiciona a TOCA como coanfitriã no seu anúncio, com as permissões que escolher. O anúncio continua no seu nome."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Preciso contratar todos os serviços?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. Você pode entregar a operação completa ou escolher só as partes que fazem sentido para você, como check-in e limpeza."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto custa a gestão de Airbnb com a TOCA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Depende do formato e do imóvel. Primeiro entendemos a sua rotina, depois enviamos uma proposta clara, sem letras miúdas. O diagnóstico inicial é gratuito."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O que é o diagnóstico gratuito?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Uma conversa sem compromisso pelo WhatsApp. Você conta sobre o imóvel, a gente olha o anúncio e a rotina de hoje e diz o que a TOCA assumiria e o que dá para melhorar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "A TOCA cuida de imóveis no Booking ou com reserva direta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. A rotina do imóvel é a mesma em qualquer plataforma: hóspede, chegada, limpeza e preparação para a próxima estadia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "E se acontecer um imprevisto durante a estadia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O hóspede fala com a TOCA. A gente resolve ou aciona quem resolve, e você fica sabendo do que aconteceu."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -47,6 +235,7 @@
         <a href="#servicos">Serviços</a>
         <a href="#dia-de-troca">Como funciona</a>
         <a href="#formatos">Formatos</a>
+        <a href="#curitiba">Curitiba</a>
         <a href="#duvidas">Dúvidas</a>
       </nav>
       <a class="btn btn--mini js-wa" href="https://wa.me/5541998960730" data-msg="Olá! Vim pelo site da TOCA e quero saber mais sobre a gestão do meu imóvel.">WhatsApp</a>
@@ -57,16 +246,16 @@
     <!-- ============ HERO ============ -->
     <section class="hero">
       <div class="hero__texto">
-        <p class="selo">Imóveis de temporada · Curitiba e região</p>
-        <h1>Seu imóvel trabalhando. <em>A&nbsp;TOCA cuidando.</em></h1>
-        <p class="hero__lead">Você investiu num imóvel para gerar renda com hospedagens, mas não tem tempo para tocar a rotina. A gente cuida dela: do primeiro “olá” ao hóspede até a cama arrumada para o próximo.</p>
+        <h1><span class="selo">Gestão de Airbnb em Curitiba</span> Seu imóvel trabalhando. <em>A&nbsp;TOCA cuidando.</em></h1>
+        <p class="hero__lead">A TOCA cuida da rotina do seu imóvel de temporada em Curitiba: hóspedes, check-in e check-out, limpeza e preparação entre estadias. Do primeiro “olá” ao hóspede até a cama arrumada para o próximo. Você só acompanha.</p>
         <div class="hero__acoes">
-          <a class="btn js-wa" href="https://wa.me/5541998960730" data-msg="Olá! Tenho um imóvel de temporada e quero conversar sobre a TOCA cuidar da operação.">
+          <a class="btn js-wa" href="https://wa.me/5541998960730" data-msg="Olá! Quero o diagnóstico gratuito do meu imóvel de temporada em Curitiba.">
             <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>
-            Conversar no WhatsApp
+            Quero um diagnóstico gratuito
           </a>
           <a class="link-seta" href="#dia-de-troca">Ver como funciona</a>
         </div>
+        <p class="hero__micro">Gratuito e sem compromisso. A gente olha o seu anúncio e a rotina do imóvel e diz o que dá para melhorar.</p>
       </div>
 
       <div class="hero__cena" aria-hidden="true">
@@ -95,8 +284,8 @@
     <section class="secao" id="servicos">
       <header class="secao__cab">
         <p class="kicker">O que fazemos</p>
-        <h2>O que fica <em>com a gente</em></h2>
-        <p>Seis frentes da rotina que costumam tomar o tempo de quem tem imóvel de temporada. Você escolhe se quer todas ou só algumas.</p>
+        <h2>Serviços de gestão de Airbnb <em>que ficam com a gente</em></h2>
+        <p>Seis frentes da rotina que costumam tomar o tempo de quem tem imóvel de temporada em Curitiba. Você escolhe se quer todas ou só algumas.</p>
       </header>
 
       <ol class="servicos">
@@ -236,32 +425,69 @@
       </div>
     </section>
 
+    <!-- ============ CURITIBA ============ -->
+    <section class="secao cidade" id="curitiba" aria-labelledby="cidade-titulo">
+      <div class="cidade__grid">
+        <div>
+          <p class="kicker">Onde atendemos</p>
+          <h2 id="cidade-titulo">Gestão de Airbnb em Curitiba, <em>perto do seu imóvel</em></h2>
+          <p class="cidade__txt">A TOCA é de Curitiba e trabalha com imóveis de temporada na cidade: apartamentos, studios e casas. Estar perto é o que permite receber o hóspede, conferir o imóvel depois da saída e resolver um imprevisto no mesmo dia.</p>
+          <p class="cidade__txt">Bairros com muito imóvel de temporada, como Centro, Batel, Água Verde, Bigorrilho, Rebouças, Cabral, Juvevê e Ecoville, estão no nosso dia a dia. Seu bairro não está na lista? Pergunte.</p>
+        </div>
+        <nav class="leituras" aria-label="Guias para proprietários">
+          <p class="kicker">Guias para proprietários</p>
+          <a href="coanfitriao-airbnb-curitiba" class="leitura">
+            <span class="leitura__tag">Guia</span>
+            <span class="leitura__titulo">Coanfitrião de Airbnb em Curitiba: o que faz e como funciona</span>
+            <span class="leitura__seta">Ler o guia</span>
+          </a>
+          <a href="guia-airbnb-curitiba" class="leitura">
+            <span class="leitura__tag">Checklist</span>
+            <span class="leitura__titulo">Como preparar seu imóvel para o Airbnb em Curitiba</span>
+            <span class="leitura__seta">Ler o checklist</span>
+          </a>
+        </nav>
+      </div>
+    </section>
+
     <!-- ============ DÚVIDAS ============ -->
     <section class="secao duvidas" id="duvidas">
       <header class="secao__cab">
         <p class="kicker">Dúvidas</p>
-        <h2>Perguntas <em>frequentes</em></h2>
+        <h2>Perguntas frequentes sobre <em>gestão de Airbnb</em></h2>
       </header>
       <div class="faq">
+        <details>
+          <summary>O que faz uma empresa de gestão de Airbnb?</summary>
+          <p>Cuida da operação do dia a dia do imóvel de temporada. Na TOCA isso inclui conversar com os hóspedes, organizar check-in e check-out, coordenar a limpeza, preparar o imóvel entre uma estadia e outra e resolver imprevistos durante a hospedagem. Você continua dono do anúncio e acompanha tudo.</p>
+        </details>
+        <details>
+          <summary>A TOCA atende quais bairros de Curitiba?</summary>
+          <p>Atendemos imóveis de temporada em Curitiba. Mande o endereço pelo WhatsApp e a gente confirma se o seu bairro está na nossa rota.</p>
+        </details>
+        <details>
+          <summary>A TOCA trabalha como coanfitriã no Airbnb?</summary>
+          <p>Sim. No formato mais comum, você adiciona a TOCA como coanfitriã no seu anúncio, com as permissões que escolher. O anúncio continua no seu nome. <a href="coanfitriao-airbnb-curitiba">Como funciona a coanfitriã</a>.</p>
+        </details>
         <details>
           <summary>Preciso contratar todos os serviços?</summary>
           <p>Não. Você pode entregar a operação completa ou escolher só as partes que fazem sentido para você, como check-in e limpeza.</p>
         </details>
         <details>
-          <summary>Como funciona a cobrança?</summary>
-          <p>Depende do formato e do imóvel. Primeiro entendemos a sua rotina, depois enviamos uma proposta clara, sem letras miúdas.</p>
+          <summary>Quanto custa a gestão de Airbnb com a TOCA?</summary>
+          <p>Depende do formato e do imóvel. Primeiro entendemos a sua rotina, depois enviamos uma proposta clara, sem letras miúdas. O diagnóstico inicial é gratuito.</p>
         </details>
         <details>
-          <summary>Quais regiões vocês atendem?</summary>
-          <p>Curitiba e região. Mande o endereço do imóvel pelo WhatsApp e a gente confirma.</p>
+          <summary>O que é o diagnóstico gratuito?</summary>
+          <p>Uma conversa sem compromisso pelo WhatsApp. Você conta sobre o imóvel, a gente olha o anúncio e a rotina de hoje e diz o que a TOCA assumiria e o que dá para melhorar.</p>
+        </details>
+        <details>
+          <summary>A TOCA cuida de imóveis no Booking ou com reserva direta?</summary>
+          <p>Sim. A rotina do imóvel é a mesma em qualquer plataforma: hóspede, chegada, limpeza e preparação para a próxima estadia.</p>
         </details>
         <details>
           <summary>E se acontecer um imprevisto durante a estadia?</summary>
           <p>O hóspede fala com a TOCA. A gente resolve ou aciona quem resolve, e você fica sabendo do que aconteceu.</p>
-        </details>
-        <details>
-          <summary>Como a gente começa?</summary>
-          <p>Mande uma mensagem contando sobre o seu imóvel: onde fica, quantos hóspedes recebe e como está a rotina hoje. A partir daí, conversamos sobre o melhor formato.</p>
         </details>
       </div>
     </section>
@@ -270,9 +496,9 @@
     <section class="final">
       <div class="final__in">
         <img src="assets/favicon.svg" alt="" width="72" height="72" class="final__simbolo">
-        <h2>Conta pra gente sobre o seu imóvel.</h2>
-        <p>Uma conversa rápida no WhatsApp é o primeiro passo. Sem compromisso.</p>
-        <a class="btn btn--claro js-wa" href="https://wa.me/5541998960730" data-msg="Olá! Quero contar sobre o meu imóvel e entender como a TOCA pode ajudar.">Chamar no WhatsApp</a>
+        <h2>Peça o diagnóstico gratuito do seu imóvel.</h2>
+        <p>Conte sobre o seu Airbnb em Curitiba. A gente responde pelo WhatsApp com o que a TOCA assumiria e o que dá para melhorar. Sem compromisso.</p>
+        <a class="btn btn--claro js-wa" href="https://wa.me/5541998960730" data-msg="Olá! Quero o diagnóstico gratuito do meu imóvel em Curitiba.">Quero meu diagnóstico gratuito</a>
         <p class="final__fone"><a href="tel:+5541998960730">(41) 99896-0730</a></p>
       </div>
     </section>
@@ -281,10 +507,12 @@
   <footer class="rodape">
     <div class="rodape__in">
       <img src="assets/logo-negativo.svg" alt="TOCA Hospitality" width="130" height="52">
-      <p>Cuidado, praticidade e tranquilidade para o seu imóvel.</p>
+      <p>Gestão de Airbnb e imóveis por temporada em Curitiba, PR.</p>
       <p class="rodape__links">
         <a class="js-wa" href="https://wa.me/5541998960730" data-msg="Olá! Vim pelo site da TOCA.">WhatsApp (41) 99896-0730</a>
         <a href="https://instagram.com/tocahospitality" rel="noopener">Instagram</a>
+        <a href="coanfitriao-airbnb-curitiba">Coanfitrião de Airbnb</a>
+        <a href="guia-airbnb-curitiba">Guia do proprietário</a>
       </p>
       <p class="rodape__copy">© <span class="js-ano">2026</span> TOCA Hospitality</p>
     </div>

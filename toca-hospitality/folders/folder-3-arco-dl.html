@@ -12,11 +12,15 @@
 
   /* ---------- FRENTE ---------- */
   .frente { background: var(--terra); color: var(--linho); }
-  .frente .janela { position: absolute; left: 3mm; right: 3mm; top: 3mm; height: 118mm; overflow: hidden; background: #E4BC94; }
-  .frente .janela img { position: absolute; left: 50%; top: -11mm; width: 150mm; transform: translateX(-50%); }
-  .frente .texto { margin-top: auto; padding: 0 11mm 14mm; }
+  .frente .janela { position: absolute; left: 3mm; right: 3mm; top: 3mm; height: 100mm; overflow: hidden; background: #E4BC94; }
+  .frente .janela img { position: absolute; left: 50%; top: -14mm; width: 150mm; transform: translateX(-50%); }
+  .frente .texto { margin-top: auto; padding: 0 9mm 12mm; }
   .frente .kicker { color: #F1D3B8; }
-  .frente h1 { color: var(--linho); font-size: 23pt; line-height: 1; font-weight: 350; margin: 3mm 0 5mm; }
+  .frente h1 { color: var(--linho); font-size: 21pt; line-height: 1; font-weight: 350; margin: 2.5mm 0 4.5mm; }
+  .frente .vale { margin-bottom: 5mm; }
+  .frente .vale__tit { font-size: 11pt; }
+  .frente .vale__qr { width: 16mm; margin: 0 3.6mm 0 3mm; }
+  .frente .vale__txt { padding-left: 4.4mm; }
   .frente h1 em { display: block; color: #F7E2CC; }
   .frente .marca { display: flex; justify-content: space-between; align-items: flex-end; border-top: .3mm solid rgba(243,236,225,.45); padding-top: 4mm; }
   .frente .marca img { width: 27mm; }
@@ -54,8 +58,16 @@
 <section class="folha frente" aria-label="Frente">
   <div class="janela"><img src="assets/janela.svg" alt=""></div>
   <div class="texto">
-    <p class="kicker">Imóveis de temporada</p>
-    <h1>Seu imóvel trabalhando. <em>A TOCA cuidando.</em></h1>
+    <p class="kicker">Gestão de Airbnb · Curitiba</p>
+    <h1>Tem Airbnb em Curitiba? <em>A TOCA cuida.</em></h1>
+    <div class="vale">
+      <div class="vale__txt">
+        <p class="vale__tag">Vale · 1 diagnóstico</p>
+        <p class="vale__tit">Diagnóstico <em>gratuito</em> do seu Airbnb</p>
+        <p class="vale__sub">Aponte a câmera e fale com a TOCA no WhatsApp. Sem compromisso.</p>
+      </div>
+      <img class="vale__qr" src="assets/qr-whatsapp-verde.svg" alt="QR code para pedir o diagnóstico gratuito no WhatsApp">
+    </div>
     <div class="marca">
       <img src="assets/logo-horizontal-linho.svg" alt="TOCA Hospitality">
       <span>Nº 41</span>

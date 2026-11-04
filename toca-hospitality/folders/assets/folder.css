@@ -21,3 +21,14 @@ em { font-style: italic; }
 .guia { position: absolute; pointer-events: none; z-index: 9; }
 .guia--dobra { top: 0; bottom: 0; width: 0; border-left: .3mm dashed rgba(0,160,255,.7); }
 .guia--seg { inset: var(--sangria); border: .3mm solid rgba(255,0,140,.55); }
+
+/* vale de capa: cupom com QR que chama o diagnóstico gratuito */
+.vale { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 0; background: var(--linho); color: var(--verde); border-radius: 1.4mm; text-align: left;
+  -webkit-mask: radial-gradient(circle at 0 50%, transparent 2.2mm, #000 2.3mm) left / 51% 100% no-repeat, radial-gradient(circle at 100% 50%, transparent 2.2mm, #000 2.3mm) right / 51% 100% no-repeat;
+          mask: radial-gradient(circle at 0 50%, transparent 2.2mm, #000 2.3mm) left / 51% 100% no-repeat, radial-gradient(circle at 100% 50%, transparent 2.2mm, #000 2.3mm) right / 51% 100% no-repeat; }
+.vale__txt { padding: 3.6mm 3.4mm 3.6mm 5mm; border-right: .3mm dashed rgba(31,43,36,.4); }
+.vale__tag { font: 500 5.6pt/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--terra-txt); }
+.vale__tit { font-family: var(--serif); font-size: 12.5pt; line-height: 1.04; color: var(--verde); margin: 1.6mm 0 1.4mm; }
+.vale__tit em { color: var(--terra-txt); }
+.vale__sub { font-size: 6.2pt; line-height: 1.35; color: var(--tinta-2); }
+.vale__qr { width: 19mm; margin: 0 4.4mm 0 3.4mm; }

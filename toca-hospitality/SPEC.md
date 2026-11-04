@@ -127,20 +127,51 @@ Pasta `landing/`: HTML, CSS e JS puros, sem build e sem dependências. Carrega r
 
 ### Estrutura
 1. **Topo fixo**: logo, menu e botão WhatsApp.
-2. **Hero**: assinatura, texto de apoio e CTA. À direita, a janela em arco com a ficha do "dia de troca" e o chaveiro balançando.
+2. **Hero**: "Gestão de Airbnb em Curitiba" + assinatura, texto de apoio e o CTA **"Quero um diagnóstico gratuito"**. À direita, a janela em arco com a ficha do "dia de troca" e o chaveiro balançando.
 3. **O que fica com a gente**: os 6 serviços em lista editorial numerada.
 4. **Dia de troca** (fundo verde): linha do tempo 11h → 15h → estadia. É a seção que explica o serviço sem jargão.
 5. **Você acompanha. A TOCA cuida.**: duas colunas, "fica com você" e "fica com a TOCA".
 6. **Formatos**: Operação completa e Sob medida, sem preço.
 7. **Para quem é**: os três perfis.
-8. **Perguntas frequentes**, em acordeão nativo (`<details>`), acessível e sem JS.
-9. **CTA final**: "Conta pra gente sobre o seu imóvel."
-10. **Rodapé**: WhatsApp e Instagram.
+8. **Onde atendemos**: "Gestão de Airbnb em Curitiba, perto do seu imóvel", com bairros e links para os dois guias.
+9. **Perguntas frequentes** (8 perguntas), em acordeão nativo (`<details>`), acessível e sem JS.
+10. **CTA final**: "Peça o diagnóstico gratuito do seu imóvel."
+11. **Rodapé**: WhatsApp, Instagram e links para os guias.
+
+Páginas de conteúdo (cada uma com o seu CTA de diagnóstico):
+- `/coanfitriao-airbnb-curitiba`: o que faz um coanfitrião, o que continua com o proprietário, tabela "sozinho × com a TOCA", como começar e perguntas frequentes.
+- `/guia-airbnb-curitiba`: checklist para preparar o imóvel (condomínio e lei, acesso, frio de Curitiba, enxoval, Wi-Fi, manual da casa, fotos e rotina de troca).
+- `/404`: página de erro com a marca.
 
 Todos os botões abrem o WhatsApp com **mensagem já preenchida**, diferente para cada botão. Assim dá para saber de onde veio o contato. No celular aparece um botão flutuante de WhatsApp.
 
+### SEO e buscas com IA
+Foco: **gestão de Airbnb em Curitiba**, além de "coanfitrião de Airbnb em Curitiba", "administração de imóvel por temporada em Curitiba" e perguntas como "como preparar apartamento para Airbnb em Curitiba".
+
+**No site (já feito):**
+| Item | Onde | Para quê |
+|---|---|---|
+| Title e description com a palavra-chave | as 3 páginas | Aparecer e ser clicada no Google |
+| H1 com "Gestão de Airbnb em Curitiba" e títulos de seção com variações | `index.html` | Dizer ao Google do que a página trata |
+| Dados estruturados (JSON-LD): `ProfessionalService` com cidade, telefone e serviços, `WebSite`, `FAQPage`, `Article`, `BreadcrumbList` | as 3 páginas | Google e IAs entendem quem é a TOCA, onde atua e o que faz. As perguntas podem aparecer direto na busca |
+| `llms.txt` | `/llms.txt` | Resumo em texto puro para ChatGPT, Claude, Perplexity e Gemini citarem a TOCA com as informações certas |
+| `robots.txt` liberando explicitamente GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended e outros | `/robots.txt` | Os robôs das buscas com IA podem ler o site |
+| `sitemap.xml` | `/sitemap.xml` | Lista as páginas para o Google |
+| Resposta direta no topo de cada guia | caixa de resumo | É o trecho que as IAs costumam citar |
+| Mesmo nome, cidade e telefone em todas as páginas | rodapé e JSON-LD | Consistência é o que faz Google e IAs confiarem na informação |
+| Canonical, Open Graph, `geo.region`, imagem `logo-512.png` | `<head>` | Evita duplicidade e melhora o compartilhamento |
+
+**Fora do site (o que mais pesa para busca local e para IA). Fazer logo depois de publicar:**
+1. **Perfil da Empresa no Google** (Google Meu Negócio): categoria "Serviço de administração de imóveis" ou similar, área atendida Curitiba, telefone e site. Pedir avaliações reais aos primeiros clientes. É a fonte nº 1 do Google Maps e de muitas respostas de IA para "em Curitiba".
+2. **Google Search Console**: adicionar o domínio e enviar `https://tocahospitality.com.br/sitemap.xml`.
+3. **Bing Webmaster Tools**: importar do Search Console. O ChatGPT usa o índice do Bing nas buscas.
+4. **Perfil de coanfitriã no Airbnb** e **Instagram** com o mesmo nome, cidade e link para o site.
+5. **Um guia novo por mês**, por exemplo "Quanto rende um Airbnb em Curitiba", "Melhores bairros para Airbnb em Curitiba" ou "Airbnb perto do Estádio / Centro de Eventos". Basta copiar um dos guias como modelo e incluir no `sitemap.xml` e no `llms.txt`.
+
+> Quando trocar qualquer pergunta frequente, atualize os três lugares: o HTML da página, o bloco JSON-LD do `<head>` e o `llms.txt`.
+
 ### Técnico
-- SEO: title, description, Open Graph com imagem (`assets/og.png`), JSON-LD `LocalBusiness`, canonical e favicon SVG + apple-touch-icon.
+- Open Graph com imagem (`assets/og.png`), canonical, favicon SVG e apple-touch-icon.
 - Acessibilidade: link "pular para o conteúdo", foco visível, contraste AA e `prefers-reduced-motion` respeitado.
 - Responsivo: testado em 1440 px e 390 px, sem rolagem horizontal.
 - `vercel.json`: URLs limpas, cache longo para `/assets` e cabeçalhos básicos de segurança.
@@ -152,7 +183,7 @@ Todos os botões abrem o WhatsApp com **mensagem já preenchida**, diferente par
 4. **Framework Preset**: `Other`. Deixe Build Command e Output Directory vazios.
 5. **Deploy**. O site sai em `algo.vercel.app`.
 6. Domínio próprio: compre `tocahospitality.com.br` no Registro.br e, na Vercel, vá em **Settings → Domains → Add** e siga as instruções de DNS.
-7. Se o domínio final for outro, troque `https://tocahospitality.com.br/` no `<head>` do `index.html` (canonical, og:image e JSON-LD).
+7. Se o domínio final for outro, troque `https://tocahospitality.com.br` em todos os arquivos de `landing/` (HTML, `robots.txt`, `sitemap.xml` e `llms.txt`). Um "localizar e substituir" no editor resolve.
 
 Alternativa sem GitHub: instale a CLI (`npm i -g vercel`), entre em `toca-hospitality/landing` e rode `vercel --prod`.
 
@@ -162,25 +193,31 @@ Alternativa sem GitHub: instale a CLI (`npm i -g vercel`), entre em `toca-hospit
 
 Pasta `folders/`. Cada folder tem o **HTML editável** e o **PDF pronto** em `folders/pdf/`, com 3 mm de sangria e fontes embutidas. As prévias em PNG ficam em `previews/`. As linhas-guia coloridas (dobra em azul, corte em magenta) só aparecem na tela e não saem no PDF.
 
-O QR code de todos os folders abre o WhatsApp com a mensagem "Olá! Vi o folder da TOCA e quero saber mais." Assim dá para medir o que veio do impresso.
+### CTA de capa: o "vale diagnóstico"
+Quem pega o folder precisa entender em 3 segundos se é para ela e o que ganha ao agir. Por isso todas as capas seguem a mesma lógica:
+1. **Pergunta que filtra**: "Tem Airbnb em Curitiba?". Quem tem, se reconhece. Quem não tem, passa adiante.
+2. **Resposta curta**: "A TOCA cuida."
+3. **Oferta com motivo para agir agora**: um **vale destacável** (formato de cupom, com picote) "Diagnóstico gratuito do seu Airbnb", com QR code.
+
+O QR abre o WhatsApp com a mensagem "Olá! Peguei o folder da TOCA e quero o diagnóstico gratuito do meu imóvel." Assim dá para saber quantos contatos vieram do impresso.
 
 ### Folder 1 · Editorial (A4 tri-dobra)
 - **Formato**: A4 aberto (297 × 210 mm), 3 painéis de 99 mm, dobra sanfona ou carteira.
 - **Para quê**: o material completo, para entregar em reunião com proprietário, deixar em imobiliária parceira ou mandar em PDF.
-- **Conteúdo**: capa verde com o logo e a janela em arco; aba com os 5 motivos; contracapa com "como começar" e QR; miolo com a assinatura, os 6 serviços, os dois formatos e a linha do tempo do dia de troca.
+- **Conteúdo**: capa verde com o logo, "Tem Airbnb em Curitiba? A TOCA cuida.", o vale com QR e a janela em arco; aba com os 5 motivos; contracapa com "como começar" e QR; miolo com a assinatura, os 6 serviços, os dois formatos e a linha do tempo do dia de troca.
 - **Papel sugerido**: couché fosco 150 g ou, melhor, papel com textura (Pólen Bold 120 g ou Markatto) para o toque artesanal.
 - ⚠️ **Na gráfica**: na dobra carteira, o painel que dobra para dentro (o da esquerda, no lado externo) deve ter 97 mm. Peça para a gráfica ajustar ou envie o PDF pedindo "ajuste de dobra carteira".
 
 ### Folder 2 · Ficha de cuidado (A5 frente e verso)
 - **Formato**: A5 (148 × 210 mm), frente e verso.
 - **Para quê**: panfleto direto e barato para distribuir em condomínios com muito Airbnb, portarias, imobiliárias e eventos.
-- **Conceito**: imita a **ficha de governança de hotel**, com checklist marcado, "quem cuida: TOCA", carimbo e picote no topo. Na frente ficam os serviços; no verso, como funciona, os formatos e o contato.
+- **Conceito**: imita a **ficha de governança de hotel**, com checklist marcado, "quem cuida: TOCA", carimbo e picote no topo. Na frente ficam a pergunta "Tem Airbnb em Curitiba?", os serviços e o vale com QR ao lado do carimbo; no verso, como funciona, os formatos e o contato.
 - **Papel sugerido**: offset 180 g ou reciclato 180 g (reforça a ideia de ficha). Um acabamento opcional que vale a pena: o carimbo aplicado à mão com um carimbo de borracha de verdade.
 
 ### Folder 3 · Arco (DL com faca especial)
 - **Formato**: 99 × 210 mm com **topo cortado em arco** (raio de 49,5 mm). É a porta da toca em papel.
 - **Para quê**: o mais memorável. Para deixar dentro do imóvel, entregar junto com a chave, usar como marcador ou mandar junto com um mimo para potenciais clientes.
-- **Conteúdo**: na frente, a janela com araucárias e a assinatura sobre terracota; no verso, os 6 serviços e o contato com QR.
+- **Conteúdo**: na frente, a janela com araucárias, "Tem Airbnb em Curitiba? A TOCA cuida." e o vale com QR sobre terracota; no verso, os 6 serviços e o contato com QR.
 - **Arquivo**: o PDF tem 3 páginas: frente, verso e **faca** (linha de corte em magenta, que vai para a gráfica como referência e não é impressa).
 - **Papel sugerido**: cartão 300 g fosco, com laminação fosca ou soft touch.
 - Custa mais pela faca especial. Se o orçamento apertar, dá para imprimir retangular: a arte já tem sangria e o arco está desenhado.
@@ -189,7 +226,11 @@ O QR code de todos os folders abre o WhatsApp com a mensagem "Olá! Vi o folder 
 
 ## 6. Pendências (confirmar com a dona da TOCA)
 - [ ] **Escolher a logo** (A, B, C ou D). A recomendação é a B.
-- [ ] **Região atendida**: escrevi "Curitiba e região" por causa do DDD 41. Confirme ou ajuste no site e nos folders.
+- [ ] **Diagnóstico gratuito**: é a oferta principal do site e dos folders. Confirme que ela topa e o que entra nele (sugestão: olhar o anúncio e a rotina do imóvel e dizer o que a TOCA assumiria e o que dá para melhorar).
+- [ ] **Coanfitriã no Airbnb**: o site diz que a TOCA trabalha como coanfitriã. Confirme que é esse o modelo.
+- [ ] **Booking e reserva direta**: o site diz que a TOCA também cuida desses imóveis. Confirme.
+- [ ] **Bairros**: a seção "Onde atendemos" cita Centro, Batel, Água Verde, Bigorrilho, Rebouças, Cabral, Juvevê e Ecoville. Tire os que ela não atende.
+- [ ] **Região**: o foco agora é Curitiba. Se ela atender também a região metropolitana, dá para acrescentar.
 - [ ] **Instagram**: o rodapé aponta para `instagram.com/tocahospitality`. Crie o perfil ou troque o link.
 - [ ] **Domínio**: verificar se `tocahospitality.com.br` está livre no Registro.br.
 - [ ] **Fotos reais** de pelo menos 1 ou 2 imóveis atendidos, para substituir a ilustração e ganhar confiança.
